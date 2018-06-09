@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8"><meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+
+    <link href="js/vanilla-calendar-master/src/vanillaCalendar.css" rel="stylesheet">
+    <script src="js/vanilla-calendar-master/src/vanillaCalendar.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="toogleSwitch.css">
+    <script type="text/javascript" src="js/pure.js"></script>
+
+</head>
+<body>
+
+<main>
+  <!-- Left panel. Start -->
+  <div id="leftPanel">
+      <div>
+          <div style="float: left;"><p class="font_sizing">ТфОП</div>
+          <div style="float: right"><p class="font_sizing">УПАТС</div>
+      </div>
+      <div id="contentleft">
+          <script>createPanelChannels()</script>
+      </div>
+  </div>
+  <!-- Left panel. End -->
+  <!-- Right panel. Start -->
+  <div id="rightPanel">
+
+      <div style="margin-top: 10px;">
+
+          <p id="#clock" class="font_sizing" style="float: left"></p>
+
+          <div class = "divR" >
+              <p>Администратор</p>
+              <button>Выход</button>
+          </div>
+          <div class = "divR">
+              <img src="img/soundY.png" class="imgR"
+                   onclick="if(this.src.match('soundY.png')) this.src = 'img/soundN.png';else this.src = 'img/soundY.png';">
+              <p>Звук</p>
+          </div>
+
+          <div class = "divR" style="text-align: center;">
+              <img src="img/alarm7.jpg" class="imgR">
+              <p>Нарушение</p>
+          </div>
+
+          <div class = "divR">
+              <img src="img/nsd3.png" class="imgR">
+              <p>НСД</p>
+          </div>
+
+      </div>
+
+      <div class="tabs">
+          <input id="tab1" type="radio" name="tabs" checked>
+          <label for="tab1">Настройки</label>
+
+          <input id="tab2" type="radio" name="tabs">
+          <label for="tab2">Диагностика</label>
+
+          <input id="tab3" type="radio" name="tabs">
+          <label for="tab3">Журналы</label>
+
+          <input id="tab4" type="radio" name="tabs">
+          <label for="tab4">Справка</label>
+
+          <section id="content1">
+
+                  <div id="DivConf">
+                      <p>Конфигурация была изменена</p>
+                      <div align="center">
+                          <button id="saveconfig">Сохранить</button>
+                          <button id="cancelconfig">Отменить</button>
+                      </div>
+                  </div>
+
+                  <fieldset>
+                      <legend>Настройка системы</legend>
+                      <button id="BtnModal4">Пользователи</button>
+                      <div id="ModalW4" class="modal">
+
+                          <div class="modal-content" style="display: block; width: 350px; height: 320px" >
+
+                                  <p align="center">Пользователи<hr></p>
+
+                                  <p>Администратор</p>
+                                  <button>Сменить пароль</button>
+
+                                  <p>Оператор</p>
+                                  <button style="margin-bottom: 25px;">Сменить пароль</button>
+
+                                  <form>
+                                      <button style="float: left;">Отменить</button>
+                                      <button style="float: right;">Применить</button>
+                                  </form>
+
+                          </div>
+                      </div>
+
+                      <button id="BtnModal5">Дата и время</button>
+
+                      <div id="ModalW5" class="modal">
+
+                          <div class="modal-content" style="width: 570px; height: 350px;">
+
+                                  <p class="font_sizing_m">Дата и время<hr></p>
+                                  <form>
+                                      <p>Часовой пояс  <select id="timezone">
+                                          <option value="-12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
+                                          <option value="-11:00">(GMT -11:00) Midway Island, Samoa</option>
+                                          <option value="-10:00">(GMT -10:00) Hawaii</option>
+                                          <option value="-09:00">(GMT -9:00) Alaska</option>
+                                          <option value="-08:00">(GMT -8:00) Pacific Time (US & Canada)</option>
+                                          <option value="-07:00">(GMT -7:00) Mountain Time (US & Canada)</option>
+                                          <option value="-06:00">(GMT -6:00) Central Time (US & Canada)</option>
+                                          <option value="-05:00">(GMT -5:00) Eastern Time (US & Canada)</option>
+                                          <option value="-04:00">(GMT -4:00) Atlantic Time (Canada)</option>
+                                          <option value="-03:00">(GMT -3:00) Brazil, Buenos Aires</option>
+                                          <option value="-02:00">(GMT -2:00) Mid-Atlantic</option>
+                                          <option value="-01:00">(GMT -1:00) Azores, Cape Verde Islands</option>
+                                          <option value="+00:00">(GMT +0:00) Western Europe Time</option>
+                                          <option value="+01:00">(GMT +1:00) Brussels, Copenhagen</option>
+                                          <option value="+02:00">(GMT +2:00) Kaliningrad, South Africa</option>
+                                          <option value="+03:00" selected="selected">(GMT +3:00) Moscow, St. Petersburg</option>
+                                          <option value="+03:50">(GMT +3:30) Tehran</option>
+                                          <option value="+04:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                                          <option value="+05:00">(GMT +5:00) Ekaterinburg, Islamabad</option>
+                                          <option value="+06:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                                          <option value="+07:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                                          <option value="+08:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                                          <option value="+09:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                                          <option value="+10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                                          <option value="+11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+                                          <option value="+12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                                          <option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
+                                          <option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
+                                      </select> </p>
+                                      <input id="syncCheckBox" type="checkbox" onclick="syncDate(this)" checked="false"> Синхронизация с сервером времени<br>
+                                      <fieldset id="autosyncf">
+                                      <p>Адрес сервера<input id="ip1" data-inputmask="'alias': 'ip'" value="192.168.0.123"  /></p>
+                                      </fieldset>
+
+                                      <p>Дата/Время &nbsp &nbsp &nbsp<input id="datetime" data-inputmask="'alias': 'datetime'" value="07/05/2019 18:25" /></p>
+                                      <button id = "buttondate1" style="width: 100%">Синхронизировать с ПК</button>
+                                      <div>
+                                          <button style="float: left">Отменить</button>
+                                          <button style="float: right">Применить</button>
+                                      </div>
+                                  </form>
+                          </div>
+                      </div>
+
+                      <button id="BtnModal1">Конфигурация</button>
+
+                      <div id="ModalW1" class="modal">
+
+                          <div class="modal-content">
+                                  <div>
+                                      <p align="center">Конфигурация</p>
+                                      <hr>
+
+                                      <fieldset>
+                                          <legend>DTMF</legend>
+
+                                          <form action="/action_page.php" method="get">
+                                              dtmf_reverse_twist: &nbsp &nbsp 2.5
+                                              <input type="range" min="2.5" max="10.9" value="5.5" step="0.1" class="slider" id="sliderA">
+                                              10.9  &nbsp &nbsp
+                                              <input id="lineA" type="number" min="2.5" max="10.9" step="0.1" pattern="\d+" />
+                                          </form>
+
+                                          <form action="" method="post">
+                                              <div class="fieldgroup">
+                                                  <p>dtmf_threshold</p>
+                                              </div>
+                                              <div class="fieldgroup">
+                                                  <input type="radio" name="radio" id="radiomy1" checked="checked">6 dB
+                                              </div>
+                                              <div class="fieldgroup">
+                                                  <input type="radio" name="radio" id="radiomy2">15 dB
+                                              </div>
+                                          </form>
+                                      </fieldset>
+
+                                      <fieldset>
+                                          <legend>Logger</legend>
+                                          <p class="font_config">file_save_count<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
+                                          <p class="font_config">file_size_limit (Mb)<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
+                                      </fieldset>
+
+                                      <br>
+
+                                      <div>
+                                          <p class="font_config">modfax_threshold</p>
+                                          &nbsp &nbsp 1
+                                          <input type="range" min="1" max="10" value="5" step="1" class="slider" id="sliderB">
+                                          10 &nbsp
+                                          <input id="lineB" type="number" value="2" min="1" max="10">
+                                      </div>
+                                      <input style="border: 2px solid darkgrey; margin-left: 3em;margin-top: 0.7em ;" id="checkBoxOver" type="checkbox"> Overlap
+
+                                      <br>
+
+                                      <br>
+
+                                      <fieldset>
+                                          <legend>pri_dialplan</legend>
+                                          <p class="font_config">pridialplan_npi <input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
+                                          <p class="font_config">pri_dialplan<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
+                                      </fieldset>
+                                      <div><button class="closeModals" value='ModalW1' style="float: left;">Отменить</button><button class="closeModals" value='ModalW1' style="float: right;" >Применить</button></div>
+                                      <br><br><hr>
+
+                                      <div class="DivFlow"> <strong>dtmf_reverse_twist</strong> - определяет максимально допустимую разницу по уровню между нижней и верхней
+                                          частотами. Допускаются значения от 2.5 (около 4 дБ) до 10.9 (около 8 дБ).<br>
+                                          <strong>dtmf_threshold</strong> - определяет соотношение сигнал/шум. Допускаются только два значения 6 (6 дБ) и 15 (15 дБ).
+                                          file_save_count - количество лог-файлов, по умолчанию – 4 файла, 5 файл удаляется при достижении размера
+                                          лог-файла 70% от заданного размера.<br>
+                                          <strong>file_size_limit</strong> - размер лог-файлов.<br>
+                                          <strong>modfax_threshold</strong> - можно менять от 1 до 10, где:<br>
+                                          1 – максимальная чувствительность по обнаружению модемных соединений и высокая вероятность ложных срабатываний;
+                                          10 – минимальная чувствительность по обнаружению модемных соединений и низкая вероятность ложных срабатываний.<br>
+                                          <strong>Overlap</strong> - Способ приема/передачи с перекрытием . Позволяет МЭ «Рубикон» принимать цифры номера, передаваемые
+                                          станциями (ТфОП/УПАТС), последовательно в разных блоках сообщения Information.<br>
+                                      </div>
+                                  </div>
+                          </div>
+                      </div>
+
+                      <button id="BtnModal2">Сброс настроек</button>
+
+                  </fieldset>
+
+                  <div id="ModalW2" class="modal">
+
+                      <div class="modal-content" style="width: 400px; height: 220px; overflow: hidden">
+
+                              <p align="center">Сброс Настроек</p>
+                              <hr>
+                              <h2 align="center">Вернуться<br>к заводским настройкам?</h2>
+                              <h2>
+
+                                  <div><button class="closeModals" value='ModalW2' style="float: left; width: 30%;">Нет</button><button class="closeModals" value='ModalW2' style="float: right; width: 30%;" >Да</button></div>
+
+                                  <br>
+                              </h2>
+                      </div>
+                  </div>
+                  </fieldset>
+
+                  <fieldset>
+                      <legend>Настройка безопасности</legend>
+                      <button id="BtnModal7">Политика безопасности</button>
+
+                      <div id="ModalW7" class="modal">
+
+                          <div class="modal-content">
+
+                                  <p align="center">Политики безопасности<hr></p>
+
+                                  <div class="tabsp" style="background-color: white">
+                                      <input id="tabp1" type="radio" name="tabsp" checked>
+                                      <label for="tabp1">Соединения</label>
+
+                                      <input id="tabp2" type="radio" name="tabsp">
+                                      <label for="tabp2">DTMF</label>
+
+                                      <input id="tabp3" type="radio" name="tabsp">
+                                      <label for="tabp3">Факс/Модем</label>
+
+                                      <input id="tabp4" type="radio" name="tabsp">
+                                      <label for="tabp4">АнтиАОН</label>
+
+                                      <section id="contentp1">
+                                              <div id= "#rowP1" class="row"></div>
+
+                                          <table class="tableForCall">
+                                              <tbody>
+                                              <tr>
+                                                  <td><p id="helpPolCall1" onclick="changeHelp(this);">Политика по умолчанию ТфОП->УПАТС</p></td>
+                                                  <td> <select>
+                                                      <option value="Запретить">Запретить</option>
+                                                      <option value="Разрешить">Разрешить</option>
+                                                  </select>
+                                                  </td>
+
+                                                  <td><p id="helpPolCall2" onclick="changeHelp(this);">Реакция на запрет</p></td>
+
+                                                  <td>
+                                                      <select>
+                                                          <option value="Абонент не отвечает">Абонент не отвечает</option>
+                                                          <option value="Абонент занят">Абонент занят</option>
+                                                          <option value="Голосовое сообщение">Голосовое сообщение</option>
+                                                      </select>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td><p id="helpPolCall3" onclick="changeHelp(this);">Политика по умолчанию УПАТС->ТфОП</p>
+                                                  </td>
+
+                                                  <td><select>
+                                                      <option value="Запретить">Запретить</option>
+                                                      <option value="Разрешить">Разрешить</option>
+                                                  </select>
+                                                  </td>
+
+                                                  <td><p id="helpPolCall4" onclick="changeHelp(this);">Поддержка поля user-user</p>
+                                                  </td>
+
+                                                  <td><select>
+                                                      <option value="Подавлять">Подавлять</option>
+                                                      <option value="Разрешать">Разрешать</option>
+                                                      <option value="Разрывать соединения">Разрывать соединения</option>
+                                                  </select></td>
+                                              </tr>
+                                              </tbody>
+                                          </table>
+
+                                          <div id="ModalW9" class="modal">
+                                              <div class="row" style="text-align: center;  width: 36% ; margin: auto " >
+                                                  <p id = "pAddGroup" class="font_sizing">Изменение группы</p>
+                                                  <div style="float: left">
+                                                      <p style="float: left">Название группы</p>
+                                                      <input  style="float: left;" id="number3" />
+                                                  </div>
+
+                                                  <div style="float: left">
+                                                      <p style="float: left">Список номеров</p>
+                                                      <select name="footerLayout" id="selectG3" style="float: left; margin-left: 0.5em"></select>
+                                                      <input style="float: left" id="number4" pattern="((\x5b\d-\d\x5d)|(\x2A)|(\x2B)|(\d)|(\x3F))*"/>
+                                                  </div>
+
+                                                  <div style="clear: both">
+                                                      <div><button class="closeModals" value='ModalW9' style="float: left; width: 30%;">Отмена</button>
+                                                          <button name = "buttonAddW9" value='ModalW9' style="float: right; width: 30%;"
+                                                                  onclick="addRowTable2()">Добавить</button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                      </section>
+                                      <section id="contentp2">
+                                          <div id= "#rowP2" class="row"></div>
+                                          <table class="tableForCall">
+                                              <tbody>
+                                              <tr>
+                                                  <td><p id="helpPolDTMF1" onclick="changeHelp(this);">Политика по умолчанию ТфОП->УПАТС</p></td>
+                                                  <td> <select>
+                                                      <option value="Запретить">Запретить</option>
+                                                      <option value="Разрешить">Разрешить</option>
+                                                  </select>
+                                                  </td>
+
+                                                  <td><p id="helpPolDTMF2" onclick="changeHelp(this);">Количество разрешенных DTMF</p></td>
+
+                                                  <td>
+                                                      <input id="inputCountDTMF" type="number" min="0" max="255" step="1" pattern="\d+" value="0" />
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td><p id="helpPolDTMF3" onclick="changeHelp(this);">Политика по умолчанию УПАТС->ТфОП</p>
+                                                  </td>
+
+                                                  <td><select>
+                                                      <option value="Запретить">Запретить</option>
+                                                      <option value="Разрешить">Разрешить</option>
+                                                  </select>
+                                                  </td>
+
+                                                  <td></td>
+                                                  <td></td>
+                                              </tr>
+                                              </tbody>
+                                          </table>
+
+                                      </section>
+                                      <section id="contentp3">
+                                          <div id= "#rowP3" class="row"></div>
+                                      </section>
+                                      <section id="contentp4">
+                                          <div id= "#rowP4" class="row"></div>
+                                      </section>
+                                  </div>
+
+                                  <div style="position:relative; bottom: 2em;">
+                                      <form>
+                                          <button style="float: left">Отменить</button>
+                                          <button style="float: right" action="/action_page.php">Применить</button>
+                                      </form>
+                                      <fieldset id = "DivFlow3">
+
+                                              <strong>Окно контекстной подсказки</strong> - всплывает по щелчку на сущность, если к ней есть подсказка. <br>
+                                              Если щелкнуть по другой сущности с контекстной подсказкой, то новое окно должно появиться вместо текущего.
+                                      </fieldset>
+                                  </div>
+                          </div>
+                      </div>
+                  </fieldset>
+
+                  <fieldset>
+                      <legend>Настройка подключений</legend>
+                      <button id="BtnModal3">Ethernet</button>
+                      <div id="ModalW3" class="modal">
+
+                          <div class="modal-content" style="width: 450px; height: 210px">
+
+                            <p align="center">Ethernet<hr></p>
+                            <label for="ipEth">IP адрес:</label>
+                            <input id="ipEth" data-inputmask="'alias': 'ip'" />
+                            <br>
+
+                            <label for="mask">Mask:</label>
+                            <input id="mask" data-inputmask="'alias': 'ip'" style="margin-left: 25px;"/>
+                            <br>
+
+                              <form>
+                                  <button style="float: left;">Отменить</button>
+                                  <button style="float: right;" action="/action_page.php">Применить</button>
+                              </form>
+
+                          </div>
+                      </div>
+                      <button id="BtnModal6">E1</button>
+                      <div id="ModalW6" class="modal">
+
+                          <div class="modal-content" style="width: 800px">
+
+                                  <p align="center">E1<hr></p>
+
+                                  <div class="tabse1">
+                                      <input id="tabse1_1" type="radio" name="tabse1" checked>
+                                      <label for="tabse1_1">ТфОП</label>
+
+                                      <input id="tabse1_2" type="radio" name="tabse1">
+                                      <label for="tabse1_2">УПАТС</label>
+
+                                      <section id="contente1_1">
+                                          <form id = "formTFOP">
+                                              <p class="font_config">Синхронизация</p>
+
+                                              <div class="fieldgroup">
+                                                  <input type="radio" name="radio" id="radioe1_1" checked="checked" onclick="checkE1(this)">Ведущий
+                                              </div>
+                                              <form>
+                                                  <div class="fieldgroup">
+                                                      <input type="radio" name="radio" id="radioe1_2" onclick="checkE1(this)">Ведомый
+                                                  </div>
+                                                  <div class="fieldgroup">
+                                                      <input type="radio" name="radio" id="radioe1_3" onclick="checkE1(this)">Ведомый(резервный)
+                                                  </div>
+                                              </form>
+                                          </form>
+                                          <div style="clear: left">
+                                              <form  id = "formNet1">
+                                                  <p class="font_config" style="margin-right: 3.68em">Сторона</p>
+                                                  <div class="fieldgroup">
+                                                      <input type="radio" name="radio" id="radioe1_4" checked="checked" onclick="checkNet(this)">User
+                                                  </div>
+                                                  <div class="fieldgroup" style="margin-left: 80px">
+                                                      <input type="radio" name="radio" id="radioe1_5" onclick="checkNet(this)">Net
+                                                  </div>
+                                              </form>
+                                          </div>
+                                          <div style="clear: left; margin-left: 25px">
+                                              <input type="checkbox" name="checkerrors" value="checker" checked> Контроль ошибок<br>
+                                          </div>
+                                      </section>
+                                      <section id="contente1_2"><form id = "formUPATS">
+                                          <p class="font_config">Синхронизация</p>
+
+                                          <div class="fieldgroup">
+                                              <input type="radio" name="radio" id="radioe1_upats_1" onclick="checkE1(this)">Ведущий
+                                          </div>
+                                          <form>
+                                              <div class="fieldgroup">
+                                                  <input type="radio" name="radio" id="radioe1_upats_2" checked="checked" onclick="checkE1(this)">Ведомый
+                                              </div>
+                                              <div class="fieldgroup">
+                                                  <input type="radio" name="radio" id="radioe1_upats_3" onclick="checkE1(this)">Ведомый(резервный)
+                                              </div>
+                                          </form>
+                                      </form>
+                                          <div style="clear: left">
+                                              <form id = "formNet2">
+                                                  <p class="font_config" style="margin-right: 3.68em">Сторона</p>
+                                                  <div class="fieldgroup">
+                                                      <input type="radio" name="radio" id="radioe1_upats_4" onclick="checkNet(this)">User
+                                                  </div>
+                                                  <div class="fieldgroup" style="margin-left: 80px">
+                                                      <input type="radio" name="radio" id="radioe1_upats_5" checked="checked" onclick="checkNet(this)">Net
+                                                  </div>
+                                              </form>
+                                          </div>
+                                          <div style="clear: left; margin-left: 25px">
+                                              <input type="checkbox" name="checkerrors_upats" value="checker_upats" checked> Контроль ошибок<br>
+                                          </div></section>
+                                  </div>
+
+                                  <div>
+                                      <form>
+                                          <div style="top: 50px;">
+                                              <button style="float: left;">Отменить</button>
+                                              <button style="float: right;" action="/action_page.php">Применить</button>
+                                          </div>
+                                      </form>
+
+                                      <fieldset class="DivFlow">  <strong>Синхронизация</strong> - режим тактовой синхронизации (ведущий/ведомый)<br>
+                                              <strong>Сторона</strong> - режим работы протокола сигнализации EDSS1: Network SIDE или USER SIDE в зависимости от подключения к ТфОП или УПАТС.<br>
+                                              <strong>Контроль ошибок</strong> - режим контроля ошибок CRC4 (включить/отключить).<br>
+                                      </fieldset>
+
+                                  </div>
+                          </div>
+                      </div>
+                  </fieldset>
+          </section>
+          <section id="content2">
+              <p>Текст "Диагностика"</p>
+          </section>
+          <section id="content3">
+              <p>Текст "Журналы"</p>
+          </section>
+          <section id="content4">
+              <p>Текст "Справка"</p>
+          </section>
+      </div>
+  </div>
+   <!-- Right panel. End -->
+</main>
+
+<script type="text/babel">
+    const rowsP = [
+        [ '[0-9]*7', '[0-9*][7]', 'Разрешить'],
+        [ '[0-9]*5', '[0-9*]2',   'Разрешить'],
+        [ '[0-9]*',  '[0-9]',     'Разрешить']
+    ];
+    const rowsG = [
+        [ 'Hall', '[2-5]*,105, 125'],
+        [ 'Home', '[2-5]*,105, 125'],
+        [ 'Light', '[2-5]*,105, 12x']
+    ];
+    const theadsP = ['С номера/группы', 'На номер/группу', 'Действие'];
+    const theadsG = ['Название группы', 'Список номеров'];
+
+    const TablesR = React.createClass({
+            render: function() {
+                const tablename=this.props.name;
+                const bstate = tablename.includes("tablepol");
+                const elementsth = bstate ? theadsP : theadsG;
+                const rows = bstate ? rowsP : rowsG;
+
+                return (
+                    <table id={tablename} className="tableP">
+                        <thead>
+                        <tr>
+                            {elementsth.map(title =>
+                                (<th key={title}>{title}</th>)
+                            )}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            rows.map((row) =>
+                                <tr>
+                                    {row.map(col =>
+                                        (<td>{col}</td> )
+                                    )}
+                                </tr>
+                            )
+                        }
+                        </tbody>
+                    </table>
+                );
+            }
+        })
+
+    var tableArray = [
+        ["tablepol1I", 'divtableP1I'],
+        ["tablepol1O", 'divtableP1O'],
+
+        ["tablepol2I", 'divtableP2I'],
+        ["tablepol2O", 'divtableP2O'],
+
+        ["tablepol3I", 'divtableP3I'],
+        ["tablepol3O", 'divtableP3O'],
+
+        ["tablegr1",  'divtableG1'],
+        ["tablegr2",  'divtableG2'],
+        ["tablegr3",  'divtableG3'] //Don't add not exist divID!!!
+    ];
+
+    var tabsArray = ["#rowP1", "#rowP2", "#rowP3"];
+
+    var myMap = new Map(tableArray);
+
+    $(document).ready(function () {
+
+        for (var key of myMap.keys()) {
+            renderTableGrOrPol(key);
+        }
+        eventChangeRows();
+    });
+
+    function renderTableGrOrPol(name) {
+        if (myMap.has(name)) {
+            ReactDOM.render(
+                <TablesR name={name}/>,
+                document.getElementById(myMap.get(name)));
+        }
+    }
+
+    const TabsTableP = React.createClass({
+        render: function () {
+
+            return (<div class="tabscall">
+                <input id="tabscall_1" type="radio" name="tabscall" checked/>
+                <label htmlFor="tabscall_1">Входящие</label>
+
+                <input id="tabscall_2" type="radio" name="tabscall"/>
+                <label htmlFor="tabscall_2">Исходящие</label>
+
+                <section id="ctabscall_1">
+                    <div id = "divTableP1"></div>
+                </section>
+                <section id="ctabscall_2">
+                    <div id = "idDivTablePCallOut"></div>
+                </section>
+            </div>);
+        }
+    })
+
+    const TabsR = React.createClass({
+        render: function () {
+
+            const idLayout = name.slice(-1);
+            const nameTable2 = 'tablePolitic_2_P' + idLayout;
+            const nameRem1 = 'remRow1P' + idLayout;
+            const nameRem2 = 'remRow2P' + idLayout;
+            const nameEdit1 = 'editRow1';
+            const nameEdit2 = 'editRow2';
+            const nameup1 = 'up1';
+            const nameup2 = 'up2';
+            const namedown1 = 'down1';
+            const namedown2 = 'down2';
+            const classbuttons = "buttons child tooltip ";
+            const classnameRem1 =  classbuttons + nameRem1;
+            const classnameEdit1 = classbuttons + nameEdit1;
+            const classnameUp1 =   classbuttons + nameup1;
+            const classnameDown1 = classbuttons + namedown1;
+            const idDivTableP = "divtableP" + idLayout;
+            const idDivTableG = "divtableG" + idLayout;
+            return (
+                <div class="column">
+                    <div id='idDivTableP  '></div>
+                    <div class="parent">
+                        <button class="buttons child addRow" id="BtnModal8"></button>
+                        <div id="ModalW8" class="modal">
+                            <div class="row" style="width: 33% ; margin: auto; background-color: indianred ">
+
+                                <p id="pAddPolitice" class="font_sizing_m">Добавление новой политики</p>
+                                <hr/>
+
+                                <p className="fieldgroup2">Номера
+                                    <input style="width: 25%; margin-left: 4em" id="number1"
+                                           pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>
+                                    <select name="footerLayout" id="selectG1" style="width: 10%"></select>>
+
+                                    <input style="width: 25%" id="number2"
+                                           pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>
+                                    <select name="footerLayout" id="selectG2" style="width: 10%"></select>
+                                </p>
+
+                                <div>
+                                    <p class="fieldgroup2">Направление</p>
+                                    <select id="selpol2">
+                                        <option value="ТфОП > УПАТС" selected="selected">ТфОП > УПАТС</option>
+                                        <option value="УПАТС > ТфОП">УПАТС > ТфОП</option>
+                                    </select>\n'
+                                    <form style="display: none" id="formpol">
+
+                                        <div class="fieldgroup2">\n'
+                                            <input type="radio" name="baz" id="radiop1" checked="checked" value="ТфОП > УПАТС"/>ТфОП > УПАТС
+                                        </div>
+                                        <div class="fieldgroup2">\n'
+                                            <input type="radio" name="baz" id="radiop2" value="УПАТС > ТфОП"/>УПАТС > ТфОП
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div style="clear: both">\n'
+                                    <p class="fieldgroup2">Действие
+                                        <select id="selpol" style="margin-left: 3em">
+                                            <option value="Разрешить">Разрешить</option>
+                                            <option value="Запретить">Запретить</option>
+                                        </select>
+                                    </p>
+                                </div>
+
+                                <div style="clear: both">
+                                    <div>
+                                        <button class="closeModals" value='ModalW8' style="float: left; width: 30%;">Отмена</button>
+                                        <button name="buttonAddW8" value='ModalW8' style="float: right; width: 30%;" onclick="addRowTable1()">Добавить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class={classnameRem1}>    -    <span   id="tooltiptext1">Выберите строку!</span></button>
+                        <button class={classnameEdit1}>&#x270E;<span class="tooltiptext">Выберите строку!</span></button>
+                        <button class={classnameUp1}>  &#x2191;<span class="tooltiptext">Выберите строку!</span></button>
+                        <button class={classnameDown1}>&#x2193;<span class="tooltiptext">Выберите строку!</span></button>
+                        <input type="text" id="myInput" class="child_search"
+                               onkeyup="myFunctionFinder(\'myInput\','tablepol1')" placeholder="Поиск по номеру.."/>
+                    </div>
+                </div>
+            );
+        }
+    })
+
+</script>
+
+</body>
+</html>
