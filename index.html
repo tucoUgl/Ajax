@@ -23,6 +23,8 @@
 </head>
 <body>
 
+<div id="tabsReact1"></div>
+
 <main>
   <!-- Left panel. Start -->
   <div id="leftPanel">
@@ -609,6 +611,10 @@
 
     $(document).ready(function () {
 
+        ReactDOM.render(
+            <TabsTableP name="tabsReact1"/>,
+            document.getElementById("tabsReact1"));
+
         for (var key of myMap.keys()) {
             renderTableGrOrPol(key);
         }
@@ -625,23 +631,211 @@
 
     const TabsTableP = React.createClass({
         render: function () {
+            var last =  this.props.name.slice(-1);
+            var nameTable1 = 'tablePolitic_1_P' + last;
+            var nameTable2 = 'tablePolitic_2_P' + last;
+            var nameRem1 = 'remRow1P' + last;
+            var nameRem2 = 'remRow2P' + last;
+            var nameEdit1 = 'editRow1';
+            var nameEdit2 = 'editRow2';
+            var nameup1 = 'up1';
+            var nameup2 = 'up2';
+            var namedown1 = 'down1';
+            var namedown2 = 'down2';
 
-            return (<div class="tabscall">
-                <input id="tabscall_1" type="radio" name="tabscall" checked/>
-                <label htmlFor="tabscall_1">Входящие</label>
+            const classButtons = "buttons child tooltip ";
 
-                <input id="tabscall_2" type="radio" name="tabscall"/>
-                <label htmlFor="tabscall_2">Исходящие</label>
 
-                <section id="ctabscall_1">
-                    <div id = "divTableP1"></div>
-                </section>
-                <section id="ctabscall_2">
-                    <div id = "idDivTablePCallOut"></div>
-                </section>
+            var classnameRem1 = classButtons + nameRem1;
+            var classnameEdit1 = classButtons + nameEdit1;
+            var classnameUp1 = classButtons + nameup1;
+            var classnameDown1 = classButtons + namedown1;
+
+
+            var idDivTablePIn  = "divtableP" + last + "I";
+            var idDivTablePOut = "divtableP" + last + "O";
+
+            last = "";
+
+            var idDivTableG = "divtableG" + last;
+
+            var nametabs = "tabsA"+ last;
+            var nameinput1 = "tabcallA" + last;
+            var nameinput2 = "tabcallB" + last;
+            var namesection1 = "scallA" + last;
+            var namesection2 = "scallB" + last;
+
+            var element = (
+                <p style={{float: 'right', height: '1.6em'}}>Политика по умолчанию <strong>Заперетить</strong>
+                    <label className="switch" style={{width: '3.2em'}}>
+                        <input type="checkbox" defaultChecked="true"/>
+                        <span className="sliderDefPol round"/>
+                    </label><strong>Разрешить</strong>
+                </p>
+            )
+
+            var strPattern = "((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*";
+            /*
+            var elementModal = (
+                <div id="ModalW8" className="modal">
+                <div className="row" style={{width: '33%', margin:'auto', backgroundColor:'indianred'}}>
+
+                    <p id="pAddPolitice" className="font_sizing_m">Добавление новой политики</p>
+                    <hr/>
+
+                    <p className="fieldgroup2">Номера
+
+                        <input style={{width: '25%', marginLeft: '4em'}} id="number1" pattern={strPattern}/>
+
+                        <select name="footerLayout" id="selectG1" style={{width: '10%'}}></select>
+
+                        <input style={{width: '25%'}} id="number2" pattern=strPattern/>
+                        <select name="footerLayout" id="selectG2" style={{width: '10%'}}></select>
+                    </p>
+
+                    <div>
+                        <p className="fieldgroup2">Направление</p>
+                        <select id="selpol2">
+                            <option value="ТфОП > УПАТС" selected="selected">ТфОП > УПАТС</option>
+                            <option value="УПАТС > ТфОП">УПАТС > ТфОП</option>
+                        </select>\n'
+                        <form style="display: none" id="formpol">
+
+                            <div className="fieldgroup2">\n'
+                                <input type="radio" name="baz" id="radiop1" checked="checked"
+                                       value="ТфОП > УПАТС"/>ТфОП > УПАТС
+                            </div>
+                            <div className="fieldgroup2">\n'
+                                <input type="radio" name="baz" id="radiop2" value="УПАТС > ТфОП"/>УПАТС >
+                                ТфОП
+                            </div>
+                        </form>
+                    </div>
+
+                    <div style="clear: both">\n'
+                        <p className="fieldgroup2">Действие
+                            <select id="selpol" style="margin-left: 3em">
+                                <option value="Разрешить">Разрешить</option>
+                                <option value="Запретить">Запретить</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div style="clear: both">
+                        <div>
+                            <button className="closeModals" value='ModalW8'
+                                    style="float: left; width: 30%;">Отмена
+                            </button>
+                            <button name="buttonAddW8" value='ModalW8' style="float: right; width: 30%;"
+                                    onClick="addRowTable1()">Добавить
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>);
+*/
+            var elementButtons = (
+                    <div className="parent">
+                        <button className="buttons child addRow" id="BtnModal8"></button>
+
+                        <button className={classnameRem1}> - <span id="tooltiptext1">Выберите строку!</span></button>
+                        <button className={classnameEdit1}>&#x270E;<span className="tooltiptext">Выберите строку!</span>
+                        </button>
+                        <button className={classnameUp1}>  &#x2191;<span className="tooltiptext">Выберите строку!</span>
+                        </button>
+                        <button className={classnameDown1}>&#x2193;<span className="tooltiptext">Выберите строку!</span>
+                        </button>
+
+                    </div>
+            );
+
+            return (
+                <div className="column">
+                    <p style={{textAlign: 'center', fontSize: '1.1em'}}>Политики</p>
+                    <div class={nametabs}>
+                        <input id={nameinput1} type="radio" defaultChecked="true" name={nametabs}/>
+                        <label htmlFor={nameinput1}>Входящие</label>
+
+                        <input id={nameinput2} type="radio" name={nametabs}/>
+                        <label htmlFor={nameinput2}>Исходящие</label>
+
+                        <sectionP id={namesection1}>
+                            <div id={idDivTablePIn}/>
+                            <div>
+                                {element}
+                            </div>
+                        </sectionP>
+                        <sectionP id={namesection2}>
+                            <div id={idDivTablePOut}/>
+                            {element}
+                        </sectionP>
+                    </div>
+                </div>
+
+            );
         }
     })
+
+
+    const TabsReact = React.createClass({
+    render: function () {
+        return (
+            <div>
+                <ul className='tabsA'>
+                    <li><a href='#tab1A'>Tab 1</a></li>
+                    <li><a href='#tab2A'>Tab 2</a></li>
+                    <li><a href='#tab3A'>Tab 3</a></li>
+                </ul>
+
+                <div id='tab1A'>
+                    <p>Hi, this is the first tab.</p>
+                </div>
+                <div id='tab2A'>
+                    <p>This is the 2nd tab.</p>
+                </div>
+                <div id='tab3A'>
+                    <p>And this is the 3rd tab.</p>
+                </div>
+            </div>
+         );
+
+    }})
+
+    $('ul.tabsA').each(function(){
+        // For each set of tabs, we want to keep track of
+        // which tab is active and its associated content
+        var $active, $content, $links = $(this).find('a');
+
+        // If the location.hash matches one of the links, use that as the active tab.
+        // If no match is found, use the first link as the initial active tab.
+        $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+        $active.addClass('active');
+
+        $content = $($active[0].hash);
+
+        // Hide the remaining content
+        $links.not($active).each(function () {
+            $(this.hash).hide();
+        });
+
+        // Bind the click event handler
+        $(this).on('click', 'a', function(e){
+            // Make the old tab inactive.
+            $active.removeClass('active');
+            $content.hide();
+
+            // Update the variables with the new link and content
+            $active = $(this);
+            $content = $(this.hash);
+
+            // Make the tab active.
+            $active.addClass('active');
+            $content.show();
+
+            // Prevent the anchor's default click action
+            e.preventDefault();
+        });
+    });
 
     const TabsR = React.createClass({
         render: function () {

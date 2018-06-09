@@ -1,0 +1,667 @@
+
+    *, *:before, *:after {box-sizing: border-box;}
+
+    .column {
+        float: left;
+        height: 30em;
+        background-color:#ccc;
+        -webkit-transition-duration: 0.3s; /* Safari */
+        transition-duration: 0.3s;
+        width: 53%;
+    }
+
+    .row{
+        display: block;
+        background-color: cadetblue;
+        -webkit-transition-duration: 0.3s; /* Safari */
+        transition-duration: 0.3s;
+    }
+
+    table > tbody{
+        -webkit-transition-duration: 0.3s; /* Safari */
+        transition-duration: 0.3s;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        */
+        color: #333;
+        /*background-color: #FAFAFA;*/
+        -webkit-font-smoothing: antialiased;
+        background-size: 80%;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        align-items: center;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 2px 6px;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        z-index: 2;
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close {
+        color: dimgrey;
+        float: right;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 15%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    button{
+        border: 2px solid #4CAF50; /* Green */
+        color: black;
+        padding: 13px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.3s; /* Safari */
+        transition-duration: 0.3s;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        border-radius: 4px;
+        min-width: 10em;
+ }
+
+    button:hover {
+        background-color: #4CAF50;
+        color: white;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    table {
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+        caption-side: top;
+        top:0;
+    }
+
+    html, body {height: 50vh;}
+
+    p {
+        margin: 5px 5px 8px;
+        line-height: 1.5;
+    }
+
+    tbody {
+        height: 20em;
+        overflow-y: auto;
+        color: black;
+        background-color: white;
+    }
+
+    tbody td, thead th {
+        width: 33.33%;
+        float: left;
+    }
+
+
+   .tableForCall > tbody td, .tableForCall >thead th {
+        width: 25%;
+        float: left;
+        border: 1px #DDD solid;
+    }
+
+   .tableP{}/*For magic!*/
+
+    .tableForCall > tbody{
+        height: 6.3em;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 0.3em;
+        cursor: pointer;
+    }
+
+    td {
+        border: 1px #DDD solid;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    thead, tbody, tr, td, th { display: block; }
+
+    tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+   /* tr:nth-child(even) {background-color: #f2f2f3;}*/
+
+    .right_column tbody td, .right_column thead th {
+        width: 50%;
+        float: left;
+    }
+
+    .centerbutton{
+        content:"+";
+        line-height: 100px;
+        display: block;
+        margin: 0 auto;
+        float: left;
+        width: 5%;
+    }
+
+    th {background-color: darkcyan; filter: brightness(105%);}
+
+    .selected {
+        background-color:cadetblue;
+        color: #FFF;
+    }
+
+    #ModalW1 > input[type="radio"]{
+        display: block;
+    }
+
+    #ModalW6 > input[type="radio"]{
+        display: block;
+    }
+
+    [type=radio]:checked + label {
+        background: white;
+        border-bottom: 1px solid white;
+        z-index: 0;
+    }
+
+    #DivConf{
+        align-items: center;
+        text-align: center;
+        border: 3px solid rebeccapurple;
+    }
+
+    .DivFlow, #DivFlow3{
+        clear: both;
+        display: block ;
+        overflow: auto;
+        max-height: 25vh;
+    }
+
+    .block {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .block:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .savebuttons{}
+
+    .savebuttons:first-child{
+        float: left;
+    }
+
+    .savebuttons:last-child{
+        float:right;
+    }
+
+    main{background: whitesmoke;}
+
+    main section{ height: 100%; }
+
+    section {
+        display: none;
+        padding: 20px 0 0px;
+        border-top: 1px solid #ddd;
+        overflow: scroll;
+    }
+
+    sectionP {
+        display: none;
+        padding: 0px;
+        margin: 0px;
+        border-top: 1px solid #ddd;
+    }
+
+    input[name="tabsA"], input[name="tabs"], input[name="tabsp"],
+    input[name="tabse1"],
+    input[name="tabsnew1"],
+    input[name="tabsnew2"],
+    input[name="tabsnew3"],
+    input[name="tabsnew4"] {
+        display: none;
+    }
+
+    input:checked + label {
+        color: #555;
+        border: 1px solid silver;
+        border-top: 2px solid orange;
+        border-bottom: 1px solid #fff;
+    }
+
+    label {
+        display: inline-block;
+        margin: 0 0 -1px;
+        padding: 15px 25px;
+        font-weight: 600;
+        text-align: center;
+        color: dimgrey;
+        border: 1px solid transparent;
+    }
+
+    .column label{
+        width: 49.7%;
+        height: 2em;
+        padding: 5px 0px;
+    }
+
+    label:before {
+        font-family: fontawesome;
+        font-weight: normal;
+        margin-right: 10px;
+    }
+
+    label:hover {
+        color: #888;
+        cursor: pointer;
+    }
+
+    .tabs, .tabsp, .tabsA{
+        position: relative;
+        clear: both;
+        margin: 25px 0;
+    }
+
+    .tabsnew1, .tabsnew2, .tabsnew3, .tabsnew4{
+        position: relative;
+        clear: both;
+        margin: 0;
+        border: 1px solid red;
+    }
+
+
+    #tab1:checked ~ #content1,
+    #tab2:checked ~ #content2,
+    #tabcallA:checked ~ #scallA,
+    #tabcallB:checked ~ #scallB,
+    #tab3:checked ~ #content3,
+    #tab4:checked ~ #content4 {
+        display: block;
+    }
+
+    #tabnew11:checked ~ #contentN11,
+    #tabnew21:checked ~ #contentN21 {
+        display: block;
+    }
+
+    #tabnew12:checked ~ #contentN12,
+    #tabnew22:checked ~ #contentN22 {
+        display: block;
+    }
+
+    #tabnew13:checked ~ #contentN13,
+    #tabnew23:checked ~ #contentN23 {
+        display: block;
+    }
+
+    #tabnew14:checked ~ #contentN14,
+    #tabnew24:checked ~ #contentN24 {
+        display: block;
+    }
+
+    #tabp1:checked ~ #contentp1,
+    #tabp2:checked ~ #contentp2,
+    #tabp3:checked ~ #contentp3,
+    #tabp4:checked ~ #contentp4 {
+        display: block;
+    }
+
+    #tabse1_1:checked ~ #contente1_1,
+    #tabse1_2:checked ~ #contente1_2{
+        display: block;
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext , .tooltip #tooltiptext1 {
+        visibility: hidden;
+        width: 160px;
+        background-color: dimgrey;
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        top: -5px;
+        left: 105%;
+    }
+
+    .tooltip:hover .tooltiptext, .tooltip:hover #tooltiptext1  {
+        visibility: visible;
+    }
+
+    .modaladept{
+        position: relative;
+        clear: both;
+        margin: 25px 0;
+    }
+
+    #leftPanel{
+      width:20%;
+      border:1px solid red;
+      display:inline-block ;
+      vertical-align: top;
+      min-width: 20em;
+    }
+
+    #rightPanel{
+      width:60%;
+      border:1px solid blue;
+      display:inline-block;
+      vertical-align: top;
+      min-width: 660px;
+    }
+
+    .fieldgroup{
+        float: left;
+        width: auto;
+        margin-left: 3em;
+    }
+
+    .fieldgroup2{
+        float: left;
+        width: auto;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .fieldgroup2:after{
+        clear: both;
+    }
+
+    .imgR {
+        height: 40px;
+        width: 40px;
+    }
+
+    .divR {
+        float:right;
+        margin-right: 35px;
+    }
+
+    .circleBase {
+        width: 1em;
+        height: 1em;
+        background: aliceblue;
+        border: 1px solid blue;
+        float: left;
+        margin: 0px 2px;
+        border-radius: 50%;
+
+        background: linear-gradient(top, #222 0%, #45484d 100%);
+        box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    }
+
+    .redCircle{
+        background: red;
+    }
+
+    .greenCircle{
+        background: forestgreen;
+    }
+
+    .grayCircle {
+        background: gray;
+    }
+
+    .line{
+        width: 4em;
+        height: 0.5em;
+        border-bottom: 2px solid blue;
+        float: left;
+        margin-top: 0.1em;
+    }
+
+    .hiding{
+        visibility: hidden;
+    }
+
+    i {
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 2px;
+        float: left;
+        margin-top: 0.3em;
+    }
+
+    .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+
+    .left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    .pcontext{
+        float: left;
+        margin-top: 0em;
+        font-size: 0.66em;
+    }
+
+    .dLegend{
+        margin-left: 4.2em;
+    }
+
+    div.centralAndClear{
+        clear: both;
+        display: table;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    p.font_sizing{
+        font-size: 22px;
+        padding: 0px 30px 0px 30px;
+        margin-right: 20px;
+    }
+
+    .font_sizing_m{
+        font-size: 22px;
+        margin-right: 20px;
+        padding: 0px 30px 0px 30px;
+        text-align: center;
+    }
+
+    p.font_config{
+        float: left;
+        margin-left: 35px;
+    }
+
+    /* .roundedOne */
+    .roundedOne {
+        width: 28px;
+        height: 28px;
+        position: relative;
+        margin: 20px auto;
+        background: #fcfff4;
+        background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+        border-radius: 50px;
+        box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .colbutton {
+        float: left;
+        width: auto;
+        height: 22em;
+        margin: 0 4px;
+        padding: 2px;
+        background-color: cadetblue;
+        border: 1px solid #999;
+        min-width: 5px;
+    }
+
+    .buttons {
+        width: 100%;
+        height: 100%;
+        background-color: slategray;
+        border: none;
+        border-radius: 5px;
+        padding: 0px;
+        transition-duration: 0.2s;
+    }
+
+    .buttons:active {
+        background-color: rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .buttons:hover{
+        background-color: rgba(0, 0, 0, 0.15);
+        color: white;
+    }
+    .parent {
+        background-color: darkgrey;
+        border: 1px solid cornflowerblue;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        float: left;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+    }
+
+    .child {
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        background-color: pink;
+        border: 1px solid #999;
+        min-width: 0px;
+    }
+
+    .child_search{
+        float: right;
+        height: 40px;
+        width: 140px;
+        margin: 10px;
+    }
+
+    #ipEth, #mask{ width: 40%;}
+
+    #close {
+        float:right;
+        display:inline-block;
+        padding:2px 5px;
+        background:#ccc;
+    }
+
+    .flag{
+        background: 50% 50% no-repeat transparent;
+        /*background:none;*/
+        width: 25px;
+        height: 19px;
+        background-size: cover;
+        display: inline-block;
+    }
+
+
