@@ -3,7 +3,7 @@
 
     .column {
         float: left;
-        height: 30em;
+        height: 37em;
         background-color:#ccc;
         -webkit-transition-duration: 0.3s; /* Safari */
         transition-duration: 0.3s;
@@ -20,6 +20,7 @@
     table > tbody{
         -webkit-transition-duration: 0.3s; /* Safari */
         transition-duration: 0.3s;
+        background-color: white;
     }
 
     /* Clear floats after the columns */
@@ -36,7 +37,6 @@
         color: #333;
         /*background-color: #FAFAFA;*/
         -webkit-font-smoothing: antialiased;
-        background-size: 80%;
     }
 
     /* The Modal (background) */
@@ -155,14 +155,10 @@
     }
 
     table {
-        border-spacing: 0;
         width: 100%;
         border: 1px solid #ddd;
-        caption-side: top;
-        top:0;
+        border-collapse: collapse;
     }
-
-    html, body {height: 50vh;}
 
     p {
         margin: 5px 5px 8px;
@@ -170,10 +166,8 @@
     }
 
     tbody {
-        height: 20em;
+        height: 23.7em;
         overflow-y: auto;
-        color: black;
-        background-color: white;
     }
 
     tbody td, thead th {
@@ -181,14 +175,49 @@
         float: left;
     }
 
+    table[name^="tablepol"] > td
+    {
+        padding: 30px;
+        margin: 30px;
+    }
 
-   .tableForCall > tbody td, .tableForCall >thead th {
+    #tableA > tbody td, #tableA  >thead th
+    {
+        width: 25%;
+        float: left;
+    }
+
+    #tableC > tbody td, #tableC  >thead th
+    {
+        width: 25%;
+        float: left;
+    }
+
+    #tableE > tbody td, #tableE  >thead th
+    {
+        width: 20%;
+        float: left;
+    }
+
+    #tableM > tbody td, #tableM  >thead th
+    {
+        width: 25%;
+        float: left;
+    }
+
+    .tableForCall > tbody td, .tableForCall >thead th {
         width: 25%;
         float: left;
         border: 1px #DDD solid;
     }
 
    .tableP{}/*For magic!*/
+
+   .tableG{}/*For magic!*/
+
+    .tableG tbody{
+        height: 20em;
+    }
 
     .tableForCall > tbody{
         height: 6.3em;
@@ -202,7 +231,6 @@
 
     td {
         border: 1px #DDD solid;
-        padding: 5px;
         cursor: pointer;
     }
 
@@ -278,6 +306,10 @@
         text-align: center;
     }
 
+    .form-group{
+        pointer-events:none;
+    }
+
     .block:hover {
         background-color: #ddd;
         color: black;
@@ -293,30 +325,26 @@
         float:right;
     }
 
-    main{background: whitesmoke;}
-
-    main section{ height: 100%; }
+    main{
+        background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
+    }
 
     section {
+        height: 100%;
         display: none;
         padding: 20px 0 0px;
         border-top: 1px solid #ddd;
-        overflow: scroll;
     }
 
     sectionP {
         display: none;
         padding: 0px;
-        margin: 0px;
         border-top: 1px solid #ddd;
+        overflow: auto;
     }
 
-    input[name="tabs"], input[name="tabsp"],
-    input[name="tabse1"],
-    input[name="tabsnew1"],
-    input[name="tabsnew2"],
-    input[name="tabsnew3"],
-    input[name="tabsnew4"] {
+    input[name^="tabs"]
+    {
         display: none;
     }
 
@@ -354,24 +382,57 @@
         cursor: pointer;
     }
 
-    .tabs, .tabsp{
+    .tabs, .tabsp, .tabsA{
         position: relative;
         clear: both;
         margin: 25px 0;
     }
 
-    .tabsnew1, .tabsnew2, .tabsnew3, .tabsnew4{
-        position: relative;
-        clear: both;
-        margin: 0;
-        border: 1px solid red;
+    .tabsAD{
+        margin: 0px;
+        padding: 0px;
     }
-
 
     #tab1:checked ~ #content1,
     #tab2:checked ~ #content2,
     #tab3:checked ~ #content3,
     #tab4:checked ~ #content4 {
+        display: block;
+    }
+
+    #tabcallA1:checked ~ #scallA1,
+    #tabcallB1:checked ~ #scallB1,
+    #tabcallA2:checked ~ #scallA2,
+    #tabcallB2:checked ~ #scallB2,
+    #tabcallA3:checked ~ #scallA3,
+    #tabcallB3:checked ~ #scallB3,
+    #tabcallA4:checked ~ #scallA4,
+    #tabcallB4:checked ~ #scallB4
+    {
+        display: block;
+    }
+
+    #tabcallAG1:checked ~ #scallAG1,
+    #tabcallBG1:checked ~ #scallBG1,
+    #tabcallAG2:checked ~ #scallAG2,
+    #tabcallBG2:checked ~ #scallBG2,
+    #tabcallAG3:checked ~ #scallAG3,
+    #tabcallBG3:checked ~ #scallBG3,
+    #tabcallAG4:checked ~ #scallAG4,
+    #tabcallBG4:checked ~ #scallBG4
+    {
+        display: block;
+    }
+
+    #tabcallAD:checked ~ #scallAD,
+    #tabcallBD:checked ~ #scallBD
+    {
+        display: block;
+    }
+
+    #tabcallAJ:checked ~ #scallAJ,
+    #tabcallBJ:checked ~ #scallBJ
+    {
         display: block;
     }
 
@@ -439,7 +500,7 @@
         margin: 25px 0;
     }
 
-    #leftPanel{
+    leftPanel{
       width:20%;
       border:1px solid red;
       display:inline-block ;
@@ -447,8 +508,8 @@
       min-width: 20em;
     }
 
-    #rightPanel{
-      width:60%;
+    rightPanel{
+      width:79%;
       border:1px solid blue;
       display:inline-block;
       vertical-align: top;
@@ -662,4 +723,22 @@
         display: inline-block;
     }
 
+    .highlight {
+        background-color: steelblue;
+    }
 
+    .RowTable{
+        width: 100%;
+        text-align: center;
+    }
+
+    @font-face {
+        font-family: 'Fira Sans';
+        src: local('FiraSans-Regular'),
+        url('/media/fonts/FiraSans-Regular.woff2') format('woff2');
+    }
+
+    legend{
+        font-size: 1em;
+        font-family: 'bold';
+    }

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html class="" lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8"><meta name="robots" content="noindex">
+<html class="" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js'></script>
@@ -15,582 +17,349 @@
     <script src="js/vanilla-calendar-master/src/vanillaCalendar.js"></script>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="toogleSwitch.css">
     <script type="text/javascript" src="js/pure.js"></script>
+    <script type="text/javascript" src="js/react-autocomplete.js"></script>
 
 </head>
 <body>
 
-<div id="tabsReact1"></div>
-
 <main>
-  <!-- Left panel. Start -->
-  <div id="leftPanel">
-      <div>
-          <div style="float: left;"><p class="font_sizing">ТфОП</div>
-          <div style="float: right"><p class="font_sizing">УПАТС</div>
-      </div>
-      <div id="contentleft">
-          <script>createPanelChannels()</script>
-      </div>
-  </div>
-  <!-- Left panel. End -->
-  <!-- Right panel. Start -->
-  <div id="rightPanel">
-
-      <div style="margin-top: 10px;">
-
-          <p id="#clock" class="font_sizing" style="float: left"></p>
-
-          <div class = "divR" >
-              <p>Администратор</p>
-              <button>Выход</button>
-          </div>
-          <div class = "divR">
-              <img src="img/soundY.png" class="imgR"
-                   onclick="if(this.src.match('soundY.png')) this.src = 'img/soundN.png';else this.src = 'img/soundY.png';">
-              <p>Звук</p>
-          </div>
-
-          <div class = "divR" style="text-align: center;">
-              <img src="img/alarm7.jpg" class="imgR">
-              <p>Нарушение</p>
-          </div>
-
-          <div class = "divR">
-              <img src="img/nsd3.png" class="imgR">
-              <p>НСД</p>
-          </div>
-
-      </div>
-
-      <div class="tabs">
-          <input id="tab1" type="radio" name="tabs" checked>
-          <label for="tab1">Настройки</label>
-
-          <input id="tab2" type="radio" name="tabs">
-          <label for="tab2">Диагностика</label>
-
-          <input id="tab3" type="radio" name="tabs">
-          <label for="tab3">Журналы</label>
-
-          <input id="tab4" type="radio" name="tabs">
-          <label for="tab4">Справка</label>
-
-          <section id="content1">
-
-                  <div id="DivConf">
-                      <p>Конфигурация была изменена</p>
-                      <div align="center">
-                          <button id="saveconfig">Сохранить</button>
-                          <button id="cancelconfig">Отменить</button>
-                      </div>
-                  </div>
-
-                  <fieldset>
-                      <legend>Настройка системы</legend>
-                      <button id="BtnModal4">Пользователи</button>
-                      <div id="ModalW4" class="modal">
-
-                          <div class="modal-content" style="display: block; width: 350px; height: 320px" >
-
-                                  <p align="center">Пользователи<hr></p>
-
-                                  <p>Администратор</p>
-                                  <button>Сменить пароль</button>
-
-                                  <p>Оператор</p>
-                                  <button style="margin-bottom: 25px;">Сменить пароль</button>
-
-                                  <form>
-                                      <button style="float: left;">Отменить</button>
-                                      <button style="float: right;">Применить</button>
-                                  </form>
-
-                          </div>
-                      </div>
-
-                      <button id="BtnModal5">Дата и время</button>
-
-                      <div id="ModalW5" class="modal">
-
-                          <div class="modal-content" style="width: 570px; height: 350px;">
-
-                                  <p class="font_sizing_m">Дата и время<hr></p>
-                                  <form>
-                                      <p>Часовой пояс  <select id="timezone">
-                                          <option value="-12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
-                                          <option value="-11:00">(GMT -11:00) Midway Island, Samoa</option>
-                                          <option value="-10:00">(GMT -10:00) Hawaii</option>
-                                          <option value="-09:00">(GMT -9:00) Alaska</option>
-                                          <option value="-08:00">(GMT -8:00) Pacific Time (US & Canada)</option>
-                                          <option value="-07:00">(GMT -7:00) Mountain Time (US & Canada)</option>
-                                          <option value="-06:00">(GMT -6:00) Central Time (US & Canada)</option>
-                                          <option value="-05:00">(GMT -5:00) Eastern Time (US & Canada)</option>
-                                          <option value="-04:00">(GMT -4:00) Atlantic Time (Canada)</option>
-                                          <option value="-03:00">(GMT -3:00) Brazil, Buenos Aires</option>
-                                          <option value="-02:00">(GMT -2:00) Mid-Atlantic</option>
-                                          <option value="-01:00">(GMT -1:00) Azores, Cape Verde Islands</option>
-                                          <option value="+00:00">(GMT +0:00) Western Europe Time</option>
-                                          <option value="+01:00">(GMT +1:00) Brussels, Copenhagen</option>
-                                          <option value="+02:00">(GMT +2:00) Kaliningrad, South Africa</option>
-                                          <option value="+03:00" selected="selected">(GMT +3:00) Moscow, St. Petersburg</option>
-                                          <option value="+03:50">(GMT +3:30) Tehran</option>
-                                          <option value="+04:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
-                                          <option value="+05:00">(GMT +5:00) Ekaterinburg, Islamabad</option>
-                                          <option value="+06:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
-                                          <option value="+07:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
-                                          <option value="+08:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
-                                          <option value="+09:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
-                                          <option value="+10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
-                                          <option value="+11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
-                                          <option value="+12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
-                                          <option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
-                                          <option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
-                                      </select> </p>
-                                      <input id="syncCheckBox" type="checkbox" onclick="syncDate(this)" checked="false"> Синхронизация с сервером времени<br>
-                                      <fieldset id="autosyncf">
-                                      <p>Адрес сервера<input id="ip1" data-inputmask="'alias': 'ip'" value="192.168.0.123"  /></p>
-                                      </fieldset>
-
-                                      <p>Дата/Время &nbsp &nbsp &nbsp<input id="datetime" data-inputmask="'alias': 'datetime'" value="07/05/2019 18:25" /></p>
-                                      <button id = "buttondate1" style="width: 100%">Синхронизировать с ПК</button>
-                                      <div>
-                                          <button style="float: left">Отменить</button>
-                                          <button style="float: right">Применить</button>
-                                      </div>
-                                  </form>
-                          </div>
-                      </div>
-
-                      <button id="BtnModal1">Конфигурация</button>
-
-                      <div id="ModalW1" class="modal">
-
-                          <div class="modal-content">
-                                  <div>
-                                      <p align="center">Конфигурация</p>
-                                      <hr>
-
-                                      <fieldset>
-                                          <legend>DTMF</legend>
-
-                                          <form action="/action_page.php" method="get">
-                                              dtmf_reverse_twist: &nbsp &nbsp 2.5
-                                              <input type="range" min="2.5" max="10.9" value="5.5" step="0.1" class="slider" id="sliderA">
-                                              10.9  &nbsp &nbsp
-                                              <input id="lineA" type="number" min="2.5" max="10.9" step="0.1" pattern="\d+" />
-                                          </form>
-
-                                          <form action="" method="post">
-                                              <div class="fieldgroup">
-                                                  <p>dtmf_threshold</p>
-                                              </div>
-                                              <div class="fieldgroup">
-                                                  <input type="radio" name="radio" id="radiomy1" checked="checked">6 dB
-                                              </div>
-                                              <div class="fieldgroup">
-                                                  <input type="radio" name="radio" id="radiomy2">15 dB
-                                              </div>
-                                          </form>
-                                      </fieldset>
-
-                                      <fieldset>
-                                          <legend>Logger</legend>
-                                          <p class="font_config">file_save_count<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
-                                          <p class="font_config">file_size_limit (Mb)<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
-                                      </fieldset>
-
-                                      <br>
-
-                                      <div>
-                                          <p class="font_config">modfax_threshold</p>
-                                          &nbsp &nbsp 1
-                                          <input type="range" min="1" max="10" value="5" step="1" class="slider" id="sliderB">
-                                          10 &nbsp
-                                          <input id="lineB" type="number" value="2" min="1" max="10">
-                                      </div>
-                                      <input style="border: 2px solid darkgrey; margin-left: 3em;margin-top: 0.7em ;" id="checkBoxOver" type="checkbox"> Overlap
-
-                                      <br>
-
-                                      <br>
-
-                                      <fieldset>
-                                          <legend>pri_dialplan</legend>
-                                          <p class="font_config">pridialplan_npi <input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
-                                          <p class="font_config">pri_dialplan<input type="number" min="0" step="1" value="1" pattern="\d+" /></p>
-                                      </fieldset>
-                                      <div><button class="closeModals" value='ModalW1' style="float: left;">Отменить</button><button class="closeModals" value='ModalW1' style="float: right;" >Применить</button></div>
-                                      <br><br><hr>
-
-                                      <div class="DivFlow"> <strong>dtmf_reverse_twist</strong> - определяет максимально допустимую разницу по уровню между нижней и верхней
-                                          частотами. Допускаются значения от 2.5 (около 4 дБ) до 10.9 (около 8 дБ).<br>
-                                          <strong>dtmf_threshold</strong> - определяет соотношение сигнал/шум. Допускаются только два значения 6 (6 дБ) и 15 (15 дБ).
-                                          file_save_count - количество лог-файлов, по умолчанию – 4 файла, 5 файл удаляется при достижении размера
-                                          лог-файла 70% от заданного размера.<br>
-                                          <strong>file_size_limit</strong> - размер лог-файлов.<br>
-                                          <strong>modfax_threshold</strong> - можно менять от 1 до 10, где:<br>
-                                          1 – максимальная чувствительность по обнаружению модемных соединений и высокая вероятность ложных срабатываний;
-                                          10 – минимальная чувствительность по обнаружению модемных соединений и низкая вероятность ложных срабатываний.<br>
-                                          <strong>Overlap</strong> - Способ приема/передачи с перекрытием . Позволяет МЭ «Рубикон» принимать цифры номера, передаваемые
-                                          станциями (ТфОП/УПАТС), последовательно в разных блоках сообщения Information.<br>
-                                      </div>
-                                  </div>
-                          </div>
-                      </div>
-
-                      <button id="BtnModal2">Сброс настроек</button>
-
-                  </fieldset>
-
-                  <div id="ModalW2" class="modal">
-
-                      <div class="modal-content" style="width: 400px; height: 220px; overflow: hidden">
-
-                              <p align="center">Сброс Настроек</p>
-                              <hr>
-                              <h2 align="center">Вернуться<br>к заводским настройкам?</h2>
-                              <h2>
-
-                                  <div><button class="closeModals" value='ModalW2' style="float: left; width: 30%;">Нет</button><button class="closeModals" value='ModalW2' style="float: right; width: 30%;" >Да</button></div>
-
-                                  <br>
-                              </h2>
-                      </div>
-                  </div>
-                  </fieldset>
-
-                  <fieldset>
-                      <legend>Настройка безопасности</legend>
-                      <button id="BtnModal7">Политика безопасности</button>
-
-                      <div id="ModalW7" class="modal">
-
-                          <div class="modal-content">
-
-                                  <p align="center">Политики безопасности<hr></p>
-
-                                  <div class="tabsp" style="background-color: white">
-                                      <input id="tabp1" type="radio" name="tabsp" checked>
-                                      <label for="tabp1">Соединения</label>
-
-                                      <input id="tabp2" type="radio" name="tabsp">
-                                      <label for="tabp2">DTMF</label>
-
-                                      <input id="tabp3" type="radio" name="tabsp">
-                                      <label for="tabp3">Факс/Модем</label>
-
-                                      <input id="tabp4" type="radio" name="tabsp">
-                                      <label for="tabp4">АнтиАОН</label>
-
-                                      <section id="contentp1">
-                                              <div id= "#rowP1" class="row"></div>
-
-                                          <table class="tableForCall">
-                                              <tbody>
-                                              <tr>
-                                                  <td><p id="helpPolCall1" onclick="changeHelp(this);">Политика по умолчанию ТфОП->УПАТС</p></td>
-                                                  <td> <select>
-                                                      <option value="Запретить">Запретить</option>
-                                                      <option value="Разрешить">Разрешить</option>
-                                                  </select>
-                                                  </td>
-
-                                                  <td><p id="helpPolCall2" onclick="changeHelp(this);">Реакция на запрет</p></td>
-
-                                                  <td>
-                                                      <select>
-                                                          <option value="Абонент не отвечает">Абонент не отвечает</option>
-                                                          <option value="Абонент занят">Абонент занят</option>
-                                                          <option value="Голосовое сообщение">Голосовое сообщение</option>
-                                                      </select>
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><p id="helpPolCall3" onclick="changeHelp(this);">Политика по умолчанию УПАТС->ТфОП</p>
-                                                  </td>
-
-                                                  <td><select>
-                                                      <option value="Запретить">Запретить</option>
-                                                      <option value="Разрешить">Разрешить</option>
-                                                  </select>
-                                                  </td>
-
-                                                  <td><p id="helpPolCall4" onclick="changeHelp(this);">Поддержка поля user-user</p>
-                                                  </td>
-
-                                                  <td><select>
-                                                      <option value="Подавлять">Подавлять</option>
-                                                      <option value="Разрешать">Разрешать</option>
-                                                      <option value="Разрывать соединения">Разрывать соединения</option>
-                                                  </select></td>
-                                              </tr>
-                                              </tbody>
-                                          </table>
-
-                                          <div id="ModalW9" class="modal">
-                                              <div class="row" style="text-align: center;  width: 36% ; margin: auto " >
-                                                  <p id = "pAddGroup" class="font_sizing">Изменение группы</p>
-                                                  <div style="float: left">
-                                                      <p style="float: left">Название группы</p>
-                                                      <input  style="float: left;" id="number3" />
-                                                  </div>
-
-                                                  <div style="float: left">
-                                                      <p style="float: left">Список номеров</p>
-                                                      <select name="footerLayout" id="selectG3" style="float: left; margin-left: 0.5em"></select>
-                                                      <input style="float: left" id="number4" pattern="((\x5b\d-\d\x5d)|(\x2A)|(\x2B)|(\d)|(\x3F))*"/>
-                                                  </div>
-
-                                                  <div style="clear: both">
-                                                      <div><button class="closeModals" value='ModalW9' style="float: left; width: 30%;">Отмена</button>
-                                                          <button name = "buttonAddW9" value='ModalW9' style="float: right; width: 30%;"
-                                                                  onclick="addRowTable2()">Добавить</button>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                      </section>
-                                      <section id="contentp2">
-                                          <div id= "#rowP2" class="row"></div>
-                                          <table class="tableForCall">
-                                              <tbody>
-                                              <tr>
-                                                  <td><p id="helpPolDTMF1" onclick="changeHelp(this);">Политика по умолчанию ТфОП->УПАТС</p></td>
-                                                  <td> <select>
-                                                      <option value="Запретить">Запретить</option>
-                                                      <option value="Разрешить">Разрешить</option>
-                                                  </select>
-                                                  </td>
-
-                                                  <td><p id="helpPolDTMF2" onclick="changeHelp(this);">Количество разрешенных DTMF</p></td>
-
-                                                  <td>
-                                                      <input id="inputCountDTMF" type="number" min="0" max="255" step="1" pattern="\d+" value="0" />
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td><p id="helpPolDTMF3" onclick="changeHelp(this);">Политика по умолчанию УПАТС->ТфОП</p>
-                                                  </td>
-
-                                                  <td><select>
-                                                      <option value="Запретить">Запретить</option>
-                                                      <option value="Разрешить">Разрешить</option>
-                                                  </select>
-                                                  </td>
-
-                                                  <td></td>
-                                                  <td></td>
-                                              </tr>
-                                              </tbody>
-                                          </table>
-
-                                      </section>
-                                      <section id="contentp3">
-                                          <div id= "#rowP3" class="row"></div>
-                                      </section>
-                                      <section id="contentp4">
-                                          <div id= "#rowP4" class="row"></div>
-                                      </section>
-                                  </div>
-
-                                  <div style="position:relative; bottom: 2em;">
-                                      <form>
-                                          <button style="float: left">Отменить</button>
-                                          <button style="float: right" action="/action_page.php">Применить</button>
-                                      </form>
-                                      <fieldset id = "DivFlow3">
-
-                                              <strong>Окно контекстной подсказки</strong> - всплывает по щелчку на сущность, если к ней есть подсказка. <br>
-                                              Если щелкнуть по другой сущности с контекстной подсказкой, то новое окно должно появиться вместо текущего.
-                                      </fieldset>
-                                  </div>
-                          </div>
-                      </div>
-                  </fieldset>
-
-                  <fieldset>
-                      <legend>Настройка подключений</legend>
-                      <button id="BtnModal3">Ethernet</button>
-                      <div id="ModalW3" class="modal">
-
-                          <div class="modal-content" style="width: 450px; height: 210px">
-
-                            <p align="center">Ethernet<hr></p>
-                            <label for="ipEth">IP адрес:</label>
-                            <input id="ipEth" data-inputmask="'alias': 'ip'" />
-                            <br>
-
-                            <label for="mask">Mask:</label>
-                            <input id="mask" data-inputmask="'alias': 'ip'" style="margin-left: 25px;"/>
-                            <br>
-
-                              <form>
-                                  <button style="float: left;">Отменить</button>
-                                  <button style="float: right;" action="/action_page.php">Применить</button>
-                              </form>
-
-                          </div>
-                      </div>
-                      <button id="BtnModal6">E1</button>
-                      <div id="ModalW6" class="modal">
-
-                          <div class="modal-content" style="width: 800px">
-
-                                  <p align="center">E1<hr></p>
-
-                                  <div class="tabse1">
-                                      <input id="tabse1_1" type="radio" name="tabse1" checked>
-                                      <label for="tabse1_1">ТфОП</label>
-
-                                      <input id="tabse1_2" type="radio" name="tabse1">
-                                      <label for="tabse1_2">УПАТС</label>
-
-                                      <section id="contente1_1">
-                                          <form id = "formTFOP">
-                                              <p class="font_config">Синхронизация</p>
-
-                                              <div class="fieldgroup">
-                                                  <input type="radio" name="radio" id="radioe1_1" checked="checked" onclick="checkE1(this)">Ведущий
-                                              </div>
-                                              <form>
-                                                  <div class="fieldgroup">
-                                                      <input type="radio" name="radio" id="radioe1_2" onclick="checkE1(this)">Ведомый
-                                                  </div>
-                                                  <div class="fieldgroup">
-                                                      <input type="radio" name="radio" id="radioe1_3" onclick="checkE1(this)">Ведомый(резервный)
-                                                  </div>
-                                              </form>
-                                          </form>
-                                          <div style="clear: left">
-                                              <form  id = "formNet1">
-                                                  <p class="font_config" style="margin-right: 3.68em">Сторона</p>
-                                                  <div class="fieldgroup">
-                                                      <input type="radio" name="radio" id="radioe1_4" checked="checked" onclick="checkNet(this)">User
-                                                  </div>
-                                                  <div class="fieldgroup" style="margin-left: 80px">
-                                                      <input type="radio" name="radio" id="radioe1_5" onclick="checkNet(this)">Net
-                                                  </div>
-                                              </form>
-                                          </div>
-                                          <div style="clear: left; margin-left: 25px">
-                                              <input type="checkbox" name="checkerrors" value="checker" checked> Контроль ошибок<br>
-                                          </div>
-                                      </section>
-                                      <section id="contente1_2"><form id = "formUPATS">
-                                          <p class="font_config">Синхронизация</p>
-
-                                          <div class="fieldgroup">
-                                              <input type="radio" name="radio" id="radioe1_upats_1" onclick="checkE1(this)">Ведущий
-                                          </div>
-                                          <form>
-                                              <div class="fieldgroup">
-                                                  <input type="radio" name="radio" id="radioe1_upats_2" checked="checked" onclick="checkE1(this)">Ведомый
-                                              </div>
-                                              <div class="fieldgroup">
-                                                  <input type="radio" name="radio" id="radioe1_upats_3" onclick="checkE1(this)">Ведомый(резервный)
-                                              </div>
-                                          </form>
-                                      </form>
-                                          <div style="clear: left">
-                                              <form id = "formNet2">
-                                                  <p class="font_config" style="margin-right: 3.68em">Сторона</p>
-                                                  <div class="fieldgroup">
-                                                      <input type="radio" name="radio" id="radioe1_upats_4" onclick="checkNet(this)">User
-                                                  </div>
-                                                  <div class="fieldgroup" style="margin-left: 80px">
-                                                      <input type="radio" name="radio" id="radioe1_upats_5" checked="checked" onclick="checkNet(this)">Net
-                                                  </div>
-                                              </form>
-                                          </div>
-                                          <div style="clear: left; margin-left: 25px">
-                                              <input type="checkbox" name="checkerrors_upats" value="checker_upats" checked> Контроль ошибок<br>
-                                          </div></section>
-                                  </div>
-
-                                  <div>
-                                      <form>
-                                          <div style="top: 50px;">
-                                              <button style="float: left;">Отменить</button>
-                                              <button style="float: right;" action="/action_page.php">Применить</button>
-                                          </div>
-                                      </form>
-
-                                      <fieldset class="DivFlow">  <strong>Синхронизация</strong> - режим тактовой синхронизации (ведущий/ведомый)<br>
-                                              <strong>Сторона</strong> - режим работы протокола сигнализации EDSS1: Network SIDE или USER SIDE в зависимости от подключения к ТфОП или УПАТС.<br>
-                                              <strong>Контроль ошибок</strong> - режим контроля ошибок CRC4 (включить/отключить).<br>
-                                      </fieldset>
-
-                                  </div>
-                          </div>
-                      </div>
-                  </fieldset>
-          </section>
-          <section id="content2">
-              <p>Текст "Диагностика"</p>
-          </section>
-          <section id="content3">
-              <p>Текст "Журналы"</p>
-          </section>
-          <section id="content4">
-              <p>Текст "Справка"</p>
-          </section>
-      </div>
-  </div>
-   <!-- Right panel. End -->
+    <leftPanel>
+        <div>
+            <div style="float: left;"><p class="font_sizing">ТфОП</p></div>
+            <div style="float: right"><p class="font_sizing">УПАТС</p></div>
+        </div>
+        <div id="contentleft"></div>
+    </leftPanel>
+
+    <rightPanel>
+
+        <div style="margin-top: 10px;">
+
+            <p id="#clock" class="font_sizing" style="float: left"></p>
+
+            <div class="divR">
+                <p>Администратор</p>
+                <button>Выход</button>
+            </div>
+            <div class="divR">
+                <img src="img/soundY.png" class="imgR"
+                     onclick="if(this.src.match('soundY.png')) this.src = 'img/soundN.png';else this.src = 'img/soundY.png';">
+                <p>Звук</p>
+            </div>
+
+            <div class="divR" style="text-align: center;">
+                <img src="img/alarm7.jpg" class="imgR">
+                <p>Нарушение</p>
+            </div>
+
+            <div class="divR">
+                <img src="img/nsd3.png" class="imgR">
+                <p>НСД</p>
+            </div>
+
+        </div>
+
+        <div class="tabs">
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1">Настройки</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Диагностика</label>
+
+            <input id="tab3" type="radio" name="tabs">
+            <label for="tab3">Журналы</label>
+
+            <input id="tab4" type="radio" name="tabs">
+            <label for="tab4">Справка</label>
+
+            <section id="content1">
+
+                <div id="DivConf">
+                    <p>Конфигурация была изменена</p>
+                    <div align="center">
+                        <button id="saveconfig">Сохранить</button>
+                        <button id="cancelconfig">Отменить</button>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Настройка системы</legend>
+                    <button id="BtnModal1">Глобальные</button>
+                    <button id="BtnModal4">Пользователи</button>
+                    <button id="BtnModal5">Дата и время</button>
+                    <button id="BtnModal10">Конфигурация</button>
+
+                    <div id="DivModal1"></div>
+
+                    <div id="DivModal4"></div>
+
+                    <div id="DivModal5"></div>
+
+                    <div id="DivModal10"></div>
+
+                    <div id="DivModal2"></div>
+
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Настройка безопасности</legend>
+                    <button id="BtnModal7">Политика безопасности</button>
+
+                    <div id="DivModal7"></div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Настройка подключений</legend>
+                    <button id="BtnModal3">Ethernet</button>
+
+                    <button id="BtnModal6">E1</button>
+
+                    <div id="DivModal3"></div>
+
+                        <div id="ModalW6" class="modal">
+
+                            <div class="modal-content" style="width: 800px">
+
+                                <p align="center">E1<hr></p>
+
+                                <div class="tabse1">
+
+                                    <input id="tabse1_1" type="radio" name="tabse1" checked>
+
+                                    <label for="tabse1_1">ТфОП</label>
+
+                                    <input id="tabse1_2" type="radio" name="tabse1">
+
+                                    <label for="tabse1_2">УПАТС</label>
+
+                                    <section id="contente1_1">
+
+                                        <form id = "formTFOP">
+
+                                            <p class="font_config">Синхронизация</p>
+
+                                            <div class="fieldgroup">
+
+                                                <input type="radio" name="radio" id="radioe1_1" checked="checked" onclick="checkE1(this)">Ведущий
+
+                                            </div>
+
+                                            <form>
+
+                                                <div class="fieldgroup">
+
+                                                    <input type="radio" name="radio" id="radioe1_2" onclick="checkE1(this)">Ведомый
+
+                                                </div>
+
+                                                <div class="fieldgroup">
+
+                                                    <input type="radio" name="radio" id="radioe1_3" onclick="checkE1(this)">Ведомый(резервный)
+
+                                                </div>
+
+                                            </form>
+
+                                        </form>
+
+                                        <div style="clear: left">
+
+                                            <form  id = "formNet1">
+
+                                                <p class="font_config" style="margin-right: 3.68em">Сторона</p>
+
+                                                <div class="fieldgroup">
+
+                                                    <input type="radio" name="radio" id="radioe1_4" checked="checked" onclick="checkNet(this)">User
+
+                                                </div>
+
+                                                <div class="fieldgroup" style="margin-left: 80px">
+
+                                                    <input type="radio" name="radio" id="radioe1_5" onclick="checkNet(this)">Net
+
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                        <div style="clear: left; margin-left: 25px">
+
+                                            <input type="checkbox" name="checkerrors" value="checker" checked> Контроль ошибок<br>
+
+                                        </div>
+
+                                    </section>
+
+                                    <section id="contente1_2"><form id = "formUPATS">
+
+                                        <p class="font_config">Синхронизация</p>
+
+                                        <div class="fieldgroup">
+
+                                            <input type="radio" name="radio" id="radioe1_upats_1" onclick="checkE1(this)">Ведущий
+
+                                        </div>
+
+                                        <form>
+
+                                            <div class="fieldgroup">
+
+                                                <input type="radio" name="radio" id="radioe1_upats_2" checked="checked" onclick="checkE1(this)">Ведомый
+
+                                            </div>
+
+                                            <div class="fieldgroup">
+
+                                                <input type="radio" name="radio" id="radioe1_upats_3" onclick="checkE1(this)">Ведомый(резервный)
+
+                                            </div>
+
+                                        </form>
+
+                                    </form>
+
+                                        <div style="clear: left">
+
+                                            <form id = "formNet2">
+
+                                                <p class="font_config" style="margin-right: 3.68em">Сторона</p>
+
+                                                <div class="fieldgroup">
+
+                                                    <input type="radio" name="radio" id="radioe1_upats_4" onclick="checkNet(this)">User
+
+                                                </div>
+
+                                                <div class="fieldgroup" style="margin-left: 80px">
+
+                                                    <input type="radio" name="radio" id="radioe1_upats_5" checked="checked" onclick="checkNet(this)">Net
+
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                        <div style="clear: left; margin-left: 25px">
+
+                                            <input type="checkbox" name="checkerrors_upats" value="checker_upats" checked> Контроль ошибок<br>
+
+                                        </div></section>
+
+                                </div>
+
+                                <div>
+
+                                    <form>
+
+                                        <div style="top: 50px;">
+
+                                            <button style="float: left;">Отменить</button>
+
+                                            <button style="float: right;" action="/action_page.php">Применить</button>
+
+                                        </div>
+
+                                    </form>
+
+                                    <fieldset class="DivFlow">  <strong>Синхронизация</strong> - режим тактовой синхронизации (ведущий/ведомый)<br>
+
+                                        <strong>Сторона</strong> - режим работы протокола сигнализации EDSS1: Network SIDE или USER SIDE в зависимости от подключения к ТфОП или УПАТС.<br>
+
+                                        <strong>Контроль ошибок</strong> - режим контроля ошибок CRC4 (включить/отключить).<br>
+
+                                    </fieldset>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    <!--<div id = "DivModal6"></div>-->
+                </fieldset>
+            </section>
+            <section id="content2">
+                <div id = "DivDiagnos"></div>
+            </section>
+            <section id="content3">
+                <div id = "DivJournals"></div>
+            </section>
+            <section id="content4">
+                <p>Текст "Справка"</p>
+            </section>
+        </div>
+    </rightPanel>
+
 </main>
 
 <script type="text/babel">
+
+    var salign = {textAlign: 'center',fontSize: '1.5em', fontWeight: 'bold'};
+    var sleft = {float: 'left'};
+    var sright = {float: 'right'};
+    var sbigger = {width: '100%'};
+
     const rowsP = [
-        [ '[0-9]*7', '[0-9*][7]', 'Разрешить'],
-        [ '[0-9]*5', '[0-9*]2',   'Разрешить'],
-        [ '[0-9]*',  '[0-9]',     'Разрешить']
+        ['[0-9]*7',     '[0-9*][7]',    "Разрешить"],
+        ['[0-9]*5',     '[0-9*]2',      "Запретить"],
+        ['[0-9]*',      '[0-9]',        "Разрешить"],
+        ['[0-9]*7',     '[0-9*][7]',    "Запретить"],
+        ['[0-9]*5',     '[0-9*]2',      "Разрешить"],
+        ['[0-9]*',      '[0-9]',        "Запретить"],
+        ['[0-9]*7',     '[0-9*][7]',    "Разрешить"],
+        ['[0-9]*5',     '[0-9*]2',      "Запретить"],
+        ['[0-9]*',      '[0-9]',        "Разрешить"],
+        ['[0-9]*7',     '[0-9*][7]',    "Запретить"],
+        ['[0-9]*5',     '[0-9*]2',      "Разрешить"],
+        ['[0-9]*',      '[0-9]',        "Запретить"],
+        ['[0-9]*7',     '[0-9*][7]',    "Разрешить"],
+        ['[0-9]*5',     '[0-9*]2',      "Запретить"],
+        ['[0-9]*',      '[0-9]',        "Разрешить"],
     ];
+
     const rowsG = [
-        [ 'Hall', '[2-5]*,105, 125'],
-        [ 'Home', '[2-5]*,105, 125'],
-        [ 'Light', '[2-5]*,105, 12x']
+        ['Hall', '[2-5]*,105, 125'],
+        ['Home', '[2-5]*,105, 125'],
+        ['Light', '[2-5]*,105, 12x']
     ];
+
+    const rowsE = [
+        ['Error', '25/06/2017 22:43:56', 'ТфОП', 'L2',      {id: 'Good', value: false}],
+        ['Warning',  '27/09/2017 06:55:55', 'УПАТС', 'L3',  {id:'UPSSS', value:true}],
+        ['Error', '25/06/2017 22:43:56', 'ТфОП', 'L2',      {id:'Good',  value:false}],
+        ['Warning',  '27/09/2017 06:55:55', 'УПАТС', 'L3',  {id:'Good',  value:true}]
+    ];
+
+    const rowsM = [
+        ['Error', '25/06/2017 22:43:56', 'AAA', 'Good'],
+        ['Warning',  '27/09/2017 06:55:55', 'CCC', 'UPSSS'],
+        ['Error', '25/06/2017 22:43:56', 'DDD', 'Good'],
+        ['Warning',  '27/09/2017 06:55:55', 'GGG', 'Good']
+    ];
+
     const theadsP = ['С номера/группы', 'На номер/группу', 'Действие'];
     const theadsG = ['Название группы', 'Список номеров'];
+    const theadsE = ['Тип', 'Дата и время', 'Порт Е1', 'Уровень', 'Сообщение'];
+    const theadsM = ['Тип', 'Дата и время', 'Идентификатор', 'Сообщение'];
 
-    const TablesR = React.createClass({
-            render: function() {
-                const tablename=this.props.name;
-                const bstate = tablename.includes("tablepol");
-                const elementsth = bstate ? theadsP : theadsG;
-                const rows = bstate ? rowsP : rowsG;
+    var arrTables = [
+        {name: "tablepol", value: theadsP, key: rowsP},
+        {name: "tablegr",  value: theadsG, key: rowsG},
+        {name: "tableE",   value: theadsE, key: rowsE},
+        {name: "tableM",   value: theadsM, key: rowsM},
+        {name: "tableA",   value: theadsM, key: rowsM},
+        {name: "tableC",   value: theadsM, key: rowsM}];
 
-                return (
-                    <table id={tablename} className="tableP">
-                        <thead>
-                        <tr>
-                            {elementsth.map(title =>
-                                (<th key={title}>{title}</th>)
-                            )}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            rows.map((row) =>
-                                <tr>
-                                    {row.map(col =>
-                                        (<td>{col}</td> )
-                                    )}
-                                </tr>
-                            )
-                        }
-                        </tbody>
-                    </table>
-                );
-            }
-        })
-
-    var tableArray = [
+    var myMap = new Map([
         ["tablepol1I", 'divtableP1I'],
         ["tablepol1O", 'divtableP1O'],
 
@@ -600,331 +369,1231 @@
         ["tablepol3I", 'divtableP3I'],
         ["tablepol3O", 'divtableP3O'],
 
-        ["tablegr1",  'divtableG1'],
-        ["tablegr2",  'divtableG2'],
-        ["tablegr3",  'divtableG3'] //Don't add not exist divID!!!
-    ];
+        ["tablegr1I", 'divtableG1I'],
+        ["tablegr1O", 'divtableG1O'],
+
+        ["tablegr2I", 'divtableG2I'],
+        ["tablegr2O", 'divtableG2O'],
+
+        ["tablegr3I", 'divtableG3I'],
+        ["tablegr3O", 'divtableG3O'],
+
+        ["tableE", 'divtableE'],
+        ["tableM", 'divtableM'],
+        ["tableC", 'divtableC'],
+        ["tableA", 'divtableA']
+        //DON'T ADD NOT EXIST divID!!!
+    ]);
 
     var tabsArray = ["#rowP1", "#rowP2", "#rowP3"];
 
-    var myMap = new Map(tableArray);
-
     $(document).ready(function () {
-
         ReactDOM.render(
-            <TabsTableP name="tabsReact1"/>,
-            document.getElementById("tabsReact1"));
+            <PanelChannels id={"contentleft"}/>,
+            document.getElementById("contentleft"));
+
+        const elems = [
+            {key: <Modal1R/>, value: "DivModal1"},
+            {key: <Modal2R/>, value: "DivModal2"},
+            {key: <Modal3R/>, value: "DivModal3"},
+            {key: <Modal4R/>, value: "DivModal4"},
+            {key: <Modal5R/>, value: "DivModal5"},
+         //   {key: <Modal6R/>, value: "DivModal6"},
+            {key: <Modal7R/>, value: "DivModal7"},
+            {key: <Modal8R/>, value: "DivModal8"},
+            {key: <Modal9R/>, value: "DivModal9"},
+            {key: <Modal10R/>, value: "DivModal10"},
+            {key: <Diagnostic/>, value: "DivDiagnos"},
+            {key: <Journals/>, value: "DivJournals"}
+            ];
+
+       elems.map(obj => {
+           ReactDOM.render(obj.key,
+               document.getElementById(obj.value));
+       });
+
+        tabsArray.map(name => ReactDOM.render(
+            <TabsTableP name={name}/>,
+            document.getElementById(name)));
 
         for (var key of myMap.keys()) {
             renderTableGrOrPol(key);
         }
-        eventChangeRows();
+
+        funcDocumentReady();
     });
+
+
+
+    class Diagnostic extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        onChange(){}
+
+        render() {
+            var rstyle = {float: 'right'};
+            var sstyle = {float: 'left' , width:'30%'};
+            var pstyle = {float: 'left', marginLeft: '3em'};
+            var nametabs = "tabsAD";
+            var nameinput1 = "tabcallAD";
+            var nameinput2 = "tabcallBD";
+            var namesection1 = "scallAD";
+            var namesection2 = "scallBD";
+            var elementSelectM = (
+                <div style={{marginTop: '1em'}}>
+
+                    <label htmlFor="typeEvent">Тип события</label>
+                    <select id="typeEvent">
+                        <option value="Notice">Notice</option>
+                        <option value="Warning">Warning</option>
+                        <option value="Error">Error</option>
+                    </select>
+
+                    <label htmlFor="start">Период C</label>
+                    <input type="date" id="start" defaultValue="2018-07-22"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <label htmlFor="end">По</label>
+                    <input type="date" id="end" defaultValue="2018-07-29"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <div id="divtableM"/>
+                    <div>
+                        <input style={sstyle} type="text" id="myInput" className="child_search" placeholder="Поиск..."/>
+                        <button className="closeModals" value={this.props.value} style={rstyle}>Сохранение журналов</button>
+                    </div>
+                </div>);
+            var elementSelectE = (
+                <div style={{marginTop: '1em'}}>
+
+                    <label htmlFor="typeEvent">Тип события</label>
+                    <select id="typeEvent">
+                        <option value="Notice">Notice</option>
+                        <option value="Warning">Warning</option>
+                        <option value="Error">Error</option>
+                    </select>
+
+                    <label htmlFor="typePort">Порт</label>
+                    <select id="typePort">
+                        <option value="Все">Все</option>
+                        <option value="ТфОП">ТфОП</option>
+                        <option value="УПАТС">УПАТС</option>
+                    </select>
+
+                    <label htmlFor="typeLevel">Уровень</label>
+                    <select id="typeLevel">
+                        <option value="Все">Все</option>
+                        <option value="L2">L2</option>
+                        <option value="L3">L3</option>
+                    </select>
+
+                    <label htmlFor="start">Период C</label>
+                    <input type="date" id="start" defaultValue="2018-07-22"
+                                   min="2018-01-01" max="2018-12-31"/>
+
+                    <label htmlFor="end">По</label>
+                    <input type="date" id="end" defaultValue="2018-07-29"
+                                   min="2018-01-01" max="2018-12-31"/>
+
+                    <div id="divtableE"/>
+                    <div>
+                        <input style={sstyle} type="text" id="myInput" className="child_search" placeholder="Поиск..."/>
+                        <button className="closeModals" value={this.props.value} style={rstyle}>Сохранение журналов</button>
+                    </div>
+                </div>);
+            var elementM = elementSelectM;
+            var elementE = elementSelectE;
+            return (
+                <div className={nametabs}>
+                    <input id={nameinput1} type="radio" defaultChecked="true" name={nametabs}/>
+                    <label htmlFor={nameinput1}>Поток Е1</label>
+
+                    <input id={nameinput2} type="radio" name={nametabs}/>
+                    <label htmlFor={nameinput2}>Состояние МЭ</label>
+
+                    <sectionP id={namesection1}>
+                        {elementE}
+                    </sectionP>
+                    <sectionP id={namesection2}>
+                        {elementM}
+                    </sectionP>
+                </div>
+            )
+        }
+    }
+
+    class Journals extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
+        onChange() {
+        }
+
+        render() {
+            var rstyle = {float: 'right'};
+            var sstyle = {float: 'left', width: '30%'};
+            var nametabs = "tabsAJ";
+            var nameinput1 = "tabcallAJ";
+            var nameinput2 = "tabcallBJ";
+            var namesection1 = "scallAJ";
+            var namesection2 = "scallBJ";
+            var elementSelectAccess = (
+                <div style={{marginTop: '1em'}}>
+
+                    <label htmlFor="typeEvent">Тип события</label>
+                    <select id="typeEvent">
+                        <option value="Notice">Notice</option>
+                        <option value="Warning">Warning</option>
+                        <option value="Error">Error</option>
+                    </select>
+
+                    <label htmlFor="start">Период C</label>
+                    <input type="date" id="start" defaultValue="2018-07-22"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <label htmlFor="end">По</label>
+                    <input type="date" id="end" defaultValue="2018-07-29"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <div id="divtableA"/>
+                    <div>
+                        <input style={sstyle} type="text" id="myInput" className="child_search" placeholder="Поиск..."/>
+                        <button className="closeModals" value={this.props.value} style={rstyle}>Сохранение журналов
+                        </button>
+                    </div>
+                </div>);
+            var elementSelectConnect = (
+                <div style={{marginTop: '1em'}}>
+
+                    <label htmlFor="typeEvent">Тип события</label>
+                    <select id="typeEvent">
+                        <option value="Notice">Все сообщения</option>
+                        <option value="Соединения">Соединения</option>
+                        <option value="Нарушения">Нарушения</option>
+                    </select>
+
+                    <label htmlFor="start">Период C</label>
+                    <input type="date" id="start" defaultValue="2018-07-22"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <label htmlFor="end">По</label>
+                    <input type="date" id="end" defaultValue="2018-07-29"
+                           min="2018-01-01" max="2018-12-31"/>
+
+                    <div id="divtableC"/>
+                    <div>
+                        <input style={sstyle} type="text" id="myInput" className="child_search" placeholder="Поиск..."/>
+                        <button style={sstyle} className="closeModals" value={this.props.value}>Сбросить счетчик
+                            нарушений
+                        </button>
+                        <button className="closeModals" value={this.props.value} style={rstyle}>Сохранение журналов
+                        </button>
+                    </div>
+                </div>);
+            var elementC = elementSelectConnect;
+            var elementA = elementSelectAccess;
+            return (
+                <div className={nametabs}>
+                    <input id={nameinput1} type="radio" defaultChecked="true" name={nametabs}/>
+                    <label htmlFor={nameinput1}>Соединение</label>
+
+                    <input id={nameinput2} type="radio" name={nametabs}/>
+                    <label htmlFor={nameinput2}>Доступ</label>
+
+                    <sectionP id={namesection1}>
+                        {elementC}
+                    </sectionP>
+                    <sectionP id={namesection2}>
+                        {elementA}
+                    </sectionP>
+                </div>
+            )
+        }
+    }
+
+    class SelectBox extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {value: this.props.name};
+        }
+
+        onChange(e) {
+            this.setState({
+                value: e.target.value
+            })
+        }
+
+        render() {
+            return (
+                <select className="RowTable" value={this.state.value} onChange={this.onChange.bind(this)}>
+                    <option value="Разрешить">Разрешить</option>
+                    <option value="Запретить">Запретить</option>
+                </select>
+            )
+        }
+    }
+
+    class ClickyTable extends React.Component {
+
+        constructor(props: Props) {
+            super(props);
+            this.state = {
+                name: '123',
+                items: [],
+                objRowSelect: {},
+                text: 'foobar',
+                selectValue: []
+            }
+
+            this._changeText = this._changeText.bind(this);
+        }
+
+        _changeText() {
+            this.setState({
+                text: this.state.text == 'Inferno' ? <SelectBox/> : 'Inferno'
+            });
+        }
+        componentWillMount(){
+            fetch( 'http://swapi.co/api/people/?format=json')
+                .then( response => response.json())
+                .then( ({results: items}) => this.setState({items}))
+        }
+
+        _handleDoubleClickItem(event): void {
+
+            var target = event.target; // где был клик?
+
+            if (target.tagName != 'TD') return; // не на TD? тогда не интересует
+
+            var parg = target.parentElement;
+
+            if (target.classList.contains("changing")) {
+                parg.classList.remove("highlight");
+                target.classList.remove("changing");
+
+                if (parg.hasChildNodes()) {
+                    var children = parg.childNodes;
+
+                    for (var i = 0; i < children.length; i++) {
+                        if(i == 2){
+                            let text = children[2].innerHTML;
+                            let str = text.substr(text.indexOf('value') + 7 , 8);
+                            alert(text);
+                            children[2].innerHTML = 'Запретить';
+                        }else children[i].setAttribute("contenteditable", "false");
+
+                    }
+                }
+            }
+            else {
+                parg.classList.add("highlight");
+
+                target.classList.add("changing");
+                if (parg.hasChildNodes()) {
+                    var children = parg.childNodes;
+
+                    for (var i = 0; i < children.length; i++) {
+                        if(i == 2){
+                            let text = children[2].textContent;
+                            children[2].innerHTML = '<select class="RowTable" value="' + text + '">\n' +
+                                '                                <option value="Разрешить">Разрешить</option>\n' +
+                                '                                <option value="Запретить">Запретить</option>\n' +
+                                '                            </select>';
+
+                        }else children[i].setAttribute("contenteditable", "true");
+                    }
+                }
+            }
+         }
+
+        handleChange(index, e){
+            let selectValue = this.state.selectValue;
+            selectValue[index] = e.target.value;
+            this.setState({selectValue});
+        }
+
+        render() {
+            const tablename = this.props.name;
+            const bstate = arrTables[tablename.includes("tablepol") ? 0 : tablename.includes("tablegr") ? 1 : tablename.includes("tableE") ? 2 : 3];
+            const elementsth = bstate.value;
+            const rows = bstate.key;
+            const classNameTable = bstate.name == 'tablepol' ? "tableP" : bstate.name == 'tablegr' ? "tableG" : "";
+
+            var element = (<input className="awesomplete"
+                   data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails"/>);
+
+            return (<div>
+                    <table id={tablename} className={classNameTable}>
+                        <thead>
+                        <tr>
+                            {elementsth.map(title =>
+                                (<th key={title}>{title}</th>)
+                            )}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            rows.map((row,indexR) =>
+                                <tr>
+                                    {row.map((col, index) => {
+
+                                            if (bstate.name == "tablepol") {
+                                               // if (index != 2) col = (<RAutoComplete name={col}/>);
+                                                if (index === 2) { //col = (<SelectBox name={col}/>);
+                                                    //  else col = (<input type="text" name="name" value={col}/>);
+/*
+                                                    col = (<td onDoubleClick={this._changeText}>
+                                                            {this.state.text}
+                                                        </td>
+                                                    );
+  */                                              }
+                                                return (<td onDoubleClick={this._handleDoubleClickItem}>{col}</td>)
+                                            }
+                                            else if (bstate.name == "tableE") {
+                                                if(index == 4) {col = col.value==true ? (<strong>{col.id}</strong>) : col.id;}
+                                            }
+                                        return (<td>{col}</td>)
+                                        }
+                                    )}
+                                </tr>
+                            )
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+    }
 
     function renderTableGrOrPol(name) {
         if (myMap.has(name)) {
             ReactDOM.render(
-                <TablesR name={name}/>,
+                <ClickyTable name={name}/>,
                 document.getElementById(myMap.get(name)));
+            //setSelectRow(name);
         }
     }
 
+    class GroupButton extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                value: this.props.value
+            };
+        }
+
+        onChange(e) {
+            this.setState({
+                value: e.target.value
+            })
+        }
+
+        render() {
+            var sbleft = {width: '30%'};
+            var sbright = {float: 'right', width: '30%'};
+            var nameR = "Да";
+            var nameL = "Нет";
+            var flag = !this.props.value || this.props.value == 'ModalW1';
+            /*
+            var sfunction;
+            if(this.props.name) {
+                nameL = "Отмена";
+                nameR = "Добавить";
+                sfunction = () => addRowTable1;
+            }
+*/
+            var elementS = (
+                <form>
+                    <button className="closeModals" value={this.props.value} style={sbleft}>{nameL}</button>
+                    <button className="closeModals" value={this.props.value} style={sbright}>{nameR}</button>
+                </form>);
+            var elementB = (
+                <form>
+                    <button>Отменить</button>
+                    <button style={sright}>Применить</button>
+                </form>);
+
+            return flag ? elementB : elementS;
+        }
+    }
+/*
+    const Modal6R = React.createClass({
+
+        changeState: function() {
+            alert(123);
+            var synL1 = "radioe1_1";
+            var synL2 = "radioe1_2";
+            var synL3 = "radioe1_3";
+            var synR1 = "radioe1_upats_1";
+            var synR2 = "radioe1_upats_2";
+            var synR3 = "radioe1_upats_3";
+
+            var temp = id == synL1 ? synR2 : (id == synL2 || id == synL3) ? synR1 : id == synR1 ? synL2 : synL1;
+            document.getElementById(temp).checked = true;
+        },
+
+        render: function () {
+            var swidth = {width: '800px'};
+            var smarginRight = {marginRight: '3.68em'};
+            var smarginLeft = {marginLeft: '80px'};
+            var sleftcheck = {clear: 'left', marginLeft: '25px'};
+            return (
+                <div id="ModalW6" className="modal">
+
+                    <div className="modal-content" style={swidth}>
+                        <p style={salign}>E1</p><hr/>
+
+                        <div className="tabse1">
+                            <input id="tabse1_1" type="radio" name="tabse1" defaultChecked={true}/>
+                            <label htmlFor="tabse1_1">ТфОП</label>
+
+                            <input id="tabse1_2" type="radio" name="tabse1"/>
+                            <label htmlFor="tabse1_2">УПАТС</label>
+
+                            <section id="contente1_1">
+                                <form id="formTFOP">
+                                    <p className="font_config">Синхронизация</p>
+
+                                    <div className="fieldgroup">
+                                        <input type="radio" name="radio" id="radioe1_1" defaultChecked={true}
+                                               onclick={this.changeState} />Ведущий
+                                    </div>
+                                    <form>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_2"/>Ведомый
+                                        </div>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_3"/>Ведомый(резервный)
+                                        </div>
+                                    </form>
+                                </form>
+    }
+                                <div style={{clear: 'left'}}>
+                                    <form id="formNet1">
+                                        <p className="font_config" style={smarginRight}>Сторона</p>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_4" defaultChecked={true}/>User
+                                        </div>
+                                        <div className="fieldgroup" style={smarginLeft}>
+                                            <input type="radio" name="radio" id="radioe1_5"/>Net
+                                        </div>
+                                    </form>
+                                </div>
+                                <div style={sleftcheck}>
+                                    <input type="checkbox" name="checkerrors" value="checker"/> Контроль ошибок<br/>
+                                </div>
+                            </section>
+                            <section id="contente1_2">
+                                <form id="formUPATS">
+                                    <p className="font_config">Синхронизация</p>
+
+                                    <div className="fieldgroup">
+                                        <input type="radio" name="radio" id="radioe1_upats_1"/>Ведущий
+                                    </div>
+                                    <form>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_upats_2" defaultChecked={true}/>Ведомый
+                                        </div>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_upats_3" />Ведомый(резервный)
+                                        </div>
+                                    </form>
+                                </form>
+                                <div style={{clear: 'left'}}>
+                                    <form id="formNet2">
+                                        <p className="font_config" style={smarginRight}>Сторона</p>
+                                        <div className="fieldgroup">
+                                            <input type="radio" name="radio" id="radioe1_upats_4" defaultChecked={true}/>User
+                                        </div>
+                                        <div className="fieldgroup" style={smarginLeft}>
+                                            <input type="radio" name="radio" id="radioe1_upats_5"  />Net
+                                        </div>
+                                    </form>
+                                </div>
+                                <div style={sleftcheck}>
+                                    <input type="checkbox" name="checkerrors_upats" value="checker_upats"/> Контроль ошибок<br/>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div><GroupButton/>
+
+                            <fieldset className="DivFlow"><strong>Синхронизация</strong> - режим тактовой синхронизации
+                                (ведущий/ведомый)<br/>
+                                <strong>Сторона</strong> - режим работы протокола сигнализации EDSS1: Network SIDE или
+                                USER SIDE
+                                в зависимости от подключения к ТфОП или УПАТС.<br/>
+                                <strong>Контроль ошибок</strong> - режим контроля ошибок CRC4 (включить/отключить).<br/>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    });
+*/
+    const Modal7R = React.createClass({
+        render: function () {
+            var sback = {backgroundColor: 'white'};
+            var sbottom = {position: 'relative', bottom: '2.3em'};
+            var spadding = {paddingTop: '4em'};
+            var sAmount = {width: '450px', height: '210px'};
+
+            return (
+                <div id="ModalW7" className="modal" style={spadding}>
+
+                    <div className="modal-content">
+
+                        <p style={salign}>Политики безопасности</p>
+                        <hr/>
+
+                        <div className="tabsp" style={sback}>
+                            <input id="tabp1" type="radio" name="tabsp" defaultChecked={true}/>
+                            <label htmlFor="tabp1">Соединения</label>
+
+                            <input id="tabp2" type="radio" name="tabsp"/>
+                            <label htmlFor="tabp2">DTMF</label>
+
+                            <input id="tabp3" type="radio" name="tabsp"/>
+                            <label htmlFor="tabp3">Факс/Модем</label>
+
+                            <input id="tabp4" type="radio" name="tabsp"/>
+                            <label htmlFor="tabp4">АнтиАОН</label>
+
+                            <section id="contentp1">
+                                <div id="#rowP1" className="row"/>
+                                <div id="DivModal9"/>
+                            </section>
+
+                            <section id="contentp2">
+                                <div id="#rowP2" className="row"/>
+                            </section>
+                            <section id="contentp3">
+                                <div id="#rowP3" className="row"/>
+                            </section>
+                            <section id="contentp4">
+                                <div id="#rowP4" className="row"/>
+                            </section>
+
+                            <div id="DivModal8"/>
+
+                        </div>
+
+                        <div style={sbottom}>
+                            <GroupButton/>
+                            <fieldset id="DivFlow3">
+                                <strong>Окно контекстной подсказки</strong> - всплывает по щелчку на сущность, если к
+                                ней есть подсказка. <br/>
+                                Если щелкнуть по другой сущности с контекстной подсказкой, то новое окно должно
+                                появиться вместо текущей.
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal3R = React.createClass({
+        render: function () {
+            var sAmount = {width: '20%'};
+
+            return (
+                <div id="ModalW3" className="modal">
+
+                    <div className="modal-content" style={sAmount}>
+
+                        <p style={salign}>Ethernet</p>
+                        <hr/>
+
+                        <label htmlFor="ipEth">IP адрес:</label>
+                        <input id="ipEth" data-inputmask="'alias': 'ip'" style={{width:'50%'}}/><br/>
+
+                        <label htmlFor="mask">Mask:</label>
+                        <input id="mask" data-inputmask="'alias': 'ip'" style={{marginLeft: '1.8em', width:'50%'}}/><br/>
+
+                        <GroupButton/>
+                    </div>
+                </div>
+            );
+        }
+    });
+    const Modal9R = React.createClass({
+        render: function () {
+            var sAmount = {width: '400px', height: '220px', overflow: 'hidden'};
+
+            return (
+                <div id="ModalW9" className="modal" style={{paddingTop: '50px'}}>
+                    <div className="row" style={{textAlign: 'center', width: '36%', margin: 'auto'}}>
+                        <p id="pAddGroup" className="font_sizing">Изменение группы</p>
+                        <div style={sleft}>
+                            <p style={sleft}>Название группы</p>
+                            <input style={sleft} id="number3"/>
+                        </div>
+
+                        <div style={sleft}>
+                            <p style={sleft}>Список номеров</p>
+                            <select name="footerLayout" id="selectG3" style={{float: 'left', marginLeft: '0.5em'}}/>
+                            <input style={sleft} id="number4" pattern="((\x5b\d-\d\x5d)|(\x2A)|(\x2B)|(\d)|(\x3F))*"/>
+                        </div>
+
+                        <div style={{clear: 'both'}}>
+                            <div>
+                                <button className="closeModals" value='ModalW9'
+                                        style={{float: 'left', width: '30%'}}>Отмена
+                                </button>
+                                <button name="buttonAddW9" value='ModalW9' style={{float: 'right', width: '30%'}}
+                                        onClick={addRowTable2}>Добавить
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    });
+    const Modal2R = React.createClass({
+        render: function () {
+
+            var sAmount = {width: '400px', height: '220px', overflow: 'hidden'};
+
+            return (
+                <div id="ModalW2" className="modal">
+
+                    <div className="modal-content" style={sAmount}>
+
+                        <p style={salign}>Сброс настроек</p>
+                        <hr/>
+                        <h2 style={salign}>Вернуться<br/>к заводским настройкам?</h2>
+                        <h2><GroupButton value={'ModalW2'}/>
+                        </h2>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal1R = React.createClass({
+        render: function () {
+            return (
+                <div id="ModalW1" className="modal">
+                    <div className="modal-content">
+                        <div>
+                            <p style={salign}>Глобальные настройки</p>
+                            <hr/>
+                            <fieldset>
+                                <legend>DTMF</legend>
+
+                                <div>
+                                    <label htmlFor="sliderA">dtmf_reverse_twist: 2.5</label>
+                                    <input id="sliderA" type="range" min="2.5" max="10.9" step="0.1" className="slider"/>
+                                    <label htmlFor="lineA">10.9</label>
+                                    <input id="lineA" type="number" min="2.5" max="10.9" step="0.1" pattern="\d+(\.\d)?"/>
+                                </div>
+
+                                <form>
+                                    <p className="fieldgroup">dtmf_threshold</p>
+                                    <div className="fieldgroup">
+                                        <input type="radio" name="radio" id="radiomy1" defaultChecked={true}/>6 dB
+                                    </div>
+                                    <div className="fieldgroup">
+                                        <input type="radio" name="radio" id="radiomy2"/>15 dB
+                                    </div>
+                                </form>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Logger</legend>
+                                <label htmlFor="fsave_count">file_save_count</label>
+                                <input id="fsave_count" type="number" defaultValue="0" min="0"step="1" pattern="\d+"/>
+                                <label htmlFor="fsize_limit">file_size_limit (Mb)</label>
+                                <input id="fsize_limit" type="number" defaultValue="0"  min="0" step="1" pattern="\d+"/>
+                            </fieldset>
+
+                            <label htmlFor="sliderB">modfax_threshold: 1</label>
+                            <input type="range" min="1" max="10" step="1" className="slider" id="sliderB"/>
+                            <label htmlFor="lineB">10</label>
+                            <input id="lineB" type="number" min="1" max="10"/>
+
+                            <div style={{position: 'relative', marginLeft: '4em'}}>
+                                <label htmlFor="checkBoxOver">Overlap</label>
+                                <input id="checkBoxOver" type="checkbox"/>
+                            </div>
+                            <br/>
+
+                            <GroupButton value={'ModalW1'}/>
+                            <hr/>
+
+                            <div className="DivFlow"><strong>dtmf_reverse_twist</strong> - определяет
+                                максимально допустимую разницу по уровню между нижней и верхней
+                                частотами. Допускаются значения от 2.5 (около 4 дБ) до 10.9 (около 8
+                                дБ).<br/>
+                                <strong>dtmf_threshold</strong> - определяет соотношение сигнал/шум.
+                                Допускаются только два значения 6 (6 дБ) и 15 (15 дБ).
+                                file_save_count - количество лог-файлов, по умолчанию – 4 файла, 5 файл
+                                удаляется при достижении размера
+                                лог-файла 70% от заданного размера.<br/>
+                                <strong>file_size_limit</strong> - размер лог-файлов.<br/>
+                                <strong>modfax_threshold</strong> - можно менять от 1 до 10, где:<br/>
+                                1 – максимальная чувствительность по обнаружению модемных соединений и
+                                высокая вероятность ложных срабатываний;
+                                10 – минимальная чувствительность по обнаружению модемных соединений и
+                                низкая вероятность ложных срабатываний.<br/>
+                                <strong>Overlap</strong> - Способ приема/передачи с перекрытием .
+                                Позволяет МЭ «Рубикон» принимать цифры номера, передаваемые
+                                станциями (ТфОП/УПАТС), последовательно в разных блоках сообщения
+                                Information.<br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal10R = React.createClass({
+        render: function () {
+            var small = {width: '30%'};
+
+            return (
+                <div id="ModalW10" className="modal">
+
+                    <div className="modal-content" style={small}>
+                        <p style={salign}>Конфигурация</p>
+                        <hr/>
+                        <button style={sbigger}>Экспортировать конфигурация</button>
+                        <button style={sbigger}>Импортировать конфигурацию</button>
+                        <br/>
+                        <button style={sbigger} id="BtnModal2">Сброс конфигурации</button>
+                        <GroupButton/>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal5R = React.createClass({
+        render: function () {
+            return (<div id="ModalW5" className="modal">
+
+                    <div className="modal-content" style={{width: '570px', height: '350px'}}>
+
+                        <p className="font_sizing_m">Дата и время
+                            <hr/>
+                        </p>
+                        <form>
+                            <p>Часовой пояс
+                                <select id="timezone">
+                                    <option value="-12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
+                                    <option value="-11:00">(GMT -11:00) Midway Island, Samoa</option>
+                                    <option value="-10:00">(GMT -10:00) Hawaii</option>
+                                    <option value="-09:00">(GMT -9:00) Alaska</option>
+                                    <option value="-08:00">(GMT -8:00) Pacific Time</option>
+                                    <option value="-07:00">(GMT -7:00) Mountain Time</option>
+                                    <option value="-06:00">(GMT -6:00) Central Time</option>
+                                    <option value="-05:00">(GMT -5:00) Eastern Time</option>
+                                    <option value="-04:00">(GMT -4:00) Atlantic Time</option>
+                                    <option value="-03:00">(GMT -3:00) Brazil, Buenos Aires</option>
+                                    <option value="-02:00">(GMT -2:00) Mid-Atlantic</option>
+                                    <option value="-01:00">(GMT -1:00) Azores, Cape Verde Islands</option>
+                                    <option value="+00:00">(GMT +0:00) Western Europe Time</option>
+                                    <option value="+01:00">(GMT +1:00) Brussels, Copenhagen</option>
+                                    <option value="+02:00">(GMT +2:00) Kaliningrad, South Africa</option>
+                                    <option value="+03:00" selected="selected">(GMT +3:00) Moscow, St. Petersburg
+                                    </option>
+                                    <option value="+03:50">(GMT +3:30) Tehran</option>
+                                    <option value="+04:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                                    <option value="+05:00">(GMT +5:00) Ekaterinburg, Islamabad</option>
+                                    <option value="+06:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                                    <option value="+07:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                                    <option value="+08:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                                    <option value="+09:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                                    <option value="+10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                                    <option value="+11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+                                    <option value="+12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                                    <option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
+                                    <option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
+                                </select></p>
+                            <input id="syncCheckBox" type="checkbox" onClick={syncDate}
+                                   defaultChecked={false}/> Синхронизация с сервером времени<br/>
+                            <fieldset id="autosyncf">
+                                <p>Адрес сервера<input id="ip1" data-inputmask="'alias': 'ip'"
+                                                       defaultValue="192.168.0.123"/></p>
+                            </fieldset>
+
+                            <p>Дата/Время <input id="datetime" data-inputmask="'alias': 'datetime'"
+                                                 defaultValue="07/05/2019 18:25"/></p>
+                            <button id="buttondate1" style={sbigger}>Синхронизировать с ПК</button>
+                            <GroupButton/>
+                        </form>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal4R = React.createClass({
+        render: function () {
+            var small = {width: '22%'};
+            return (<div id="ModalW4" className="modal">
+                    <div className="modal-content" style={small}>
+                        <p style={salign}>Пользователи</p>
+                        <hr/>
+                            <label htmlFor="passAdmin">Администратор</label>
+                            <button id="passAdmin" style={sright}>Сменить пароль</button>
+                        <hr/>
+                            <label htmlFor="passOperator">Оператор</label>
+                            <button id="passOperator" style={sright}>Сменить пароль</button>
+                        <hr/>
+                        <GroupButton/>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    const Modal8R = React.createClass({
+        render: function () {
+            var strPattern = "((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*";
+            return (
+                <div id="ModalW8" className="modal">
+                    <div className="row" style={{width: '33%', margin: 'auto', backgroundColor: 'darkseagreen'}}>
+
+                        <p id="pAddPolitice" className="font_sizing_m">Добавление новой политики</p>
+                        <hr/>
+
+                        <p className="fieldgroup2">Номера
+
+                            <input style={{width: '25%', marginLeft: '4em'}} id="number1" pattern={strPattern}/>
+
+                            <select name="footerLayout" id="selectG1" style={{width: '14.5%'}}/>
+
+                            <input style={{width: '25%'}} id="number2" pattern={strPattern}/>
+                            <select name="footerLayout" id="selectG2" style={{width: '14.5%'}}/>
+                        </p>
+
+                        <div style={{clear: 'both'}}>
+                            <p className="fieldgroup2">Действие
+                                <select id="selpol" style={{marginLeft: '3em'}}>
+                                    <option value="Разрешить">Разрешить</option>
+                                    <option value="Запретить">Запретить</option>
+                                </select>
+                            </p>
+                        </div>
+
+                        <div style={{clear: 'both'}}>
+                            <button className="closeModals" value='ModalW8'
+                                    style={{float: 'left', width: '30%'}}>Отмена
+                            </button>
+                            <button name="buttonAddW8" value='ModalW8' style={{float: 'right', width: '30%'}}
+                                    onClick={addRowTable1}>Добавить
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            );
+        }
+    });
+
     const TabsTableP = React.createClass({
         render: function () {
-            var last =  this.props.name.slice(-1);
-            var nameTable1 = 'tablePolitic_1_P' + last;
-            var nameTable2 = 'tablePolitic_2_P' + last;
-            var nameRem1 = 'remRow1P' + last;
-            var nameRem2 = 'remRow2P' + last;
-            var nameEdit1 = 'editRow1';
-            var nameEdit2 = 'editRow2';
-            var nameup1 = 'up1';
-            var nameup2 = 'up2';
-            var namedown1 = 'down1';
-            var namedown2 = 'down2';
+            var last = this.props.name.slice(-1);
 
-            const classButtons = "buttons child tooltip ";
-
-
-            var classnameRem1 = classButtons + nameRem1;
-            var classnameEdit1 = classButtons + nameEdit1;
-            var classnameUp1 = classButtons + nameup1;
-            var classnameDown1 = classButtons + namedown1;
+            var nAdd1 = "addRowIn" + last;
+            var nAdd2 = "addRowOut" + last;
+            var nRem1 = 'remRowIn' + last;
+            var nRem2 = 'remRowOut' + last;
+            var nEdit1 = 'editRowIn' + last;
+            var nEdit2 = 'editRowOut' + last;
+            var nUp1 = 'upIn' + last;
+            var nUp2 = 'upOut' + last;
+            var nDown1 = 'downIn' + last;
+            var nDown2 = 'downOut' + last;
 
 
-            var idDivTablePIn  = "divtableP" + last + "I";
+            const classAdd = "buttons child ";
+            const classButtons = classAdd + "tooltip ";
+
+            var nameRem1 = classButtons + nRem1;
+            var nameEdit1 = classButtons + nEdit1;
+            var nameUp1 = classButtons + nUp1;
+            var nameDown1 = classButtons + nDown1;
+            var nameAdd1 = classAdd + nAdd1;
+
+            var nameRem2 = classButtons + nRem2;
+            var nameEdit2 = classButtons + nEdit2;
+            var nameUp2 = classButtons + nUp2;
+            var nameDown2 = classButtons + nDown2;
+            var nameAdd2 = classAdd + nAdd2;
+
+
+            var idDivTablePIn = "divtableP" + last + "I";
             var idDivTablePOut = "divtableP" + last + "O";
 
-            last = "";
+            var idDivTableGIn = "divtableG" + last + "I";
+            var idDivTableGOut = "divtableG" + last + "O";
 
-            var idDivTableG = "divtableG" + last;
-
-            var nametabs = "tabsA"+ last;
+            var nametabs = "tabsA" + last;
             var nameinput1 = "tabcallA" + last;
             var nameinput2 = "tabcallB" + last;
             var namesection1 = "scallA" + last;
             var namesection2 = "scallB" + last;
 
-            var element = (
-                <p style={{float: 'right', height: '1.6em'}}>Политика по умолчанию <strong>Заперетить</strong>
-                    <label className="switch" style={{width: '3.2em'}}>
+            var nametabsG = "tabsAG" + last;
+            var nameinput1G = "tabcallAG" + last;
+            var nameinput2G = "tabcallBG" + last;
+            var namesection1G = "scallAG" + last;
+            var namesection2G = "scallBG" + last;
+
+            var elementTableCall = (
+                <table className="tableForCall">
+                    <tbody>
+                    <tr>
+
+                        <td><p id="helpPolCall2" onClick={changeHelp}>Реакция на запрет</p></td>
+
+                        <td>
+                            <select>
+                                <option value="Абонент не отвечает">Абонент не отвечает</option>
+                                <option value="Абонент занят">Абонент занят</option>
+                                <option value="Голосовое сообщение">Голосовое сообщение</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p id="helpPolCall4" onClick={changeHelp}>Поддержка поля user-user</p>
+                        </td>
+
+                        <td><select>
+                            <option value="Подавлять">Подавлять</option>
+                            <option value="Разрешать">Разрешать</option>
+                            <option value="Разрывать соединения">Разрывать соединения</option>
+                        </select></td>
+                    </tr>
+                    </tbody>
+                </table>
+            );
+
+            var elementTableDTMF = (<table className="tableForCall">
+                <tbody>
+                <tr>
+                    <td><p id="helpPolDTMF2">Количество разрешенных DTMF</p></td>
+                    <td><input id="countDTMF" type="number" min="0" max="255" step="1" pattern="\d+" defaultValue="0"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>);
+
+            var elementTableUnder = this.props.name == "#rowP1" ? elementTableCall : this.props.name == "#rowP2" ? elementTableDTMF : (
+                <div></div>);
+
+
+            var elementToogleSwitch = (
+                <p style={{float: 'right', height: '1.6em', verticalAlign: 'top'}}>Политика по
+                    умолчанию <strong>Заперетить</strong>
+                    <label className="switch" style={{width: '4em'}}>
                         <input type="checkbox" defaultChecked="true"/>
-                        <span className="sliderDefPol round"/>
+                        <span className="sliderSwitch    round"/>
                     </label><strong>Разрешить</strong>
                 </p>
+            );
+
+            var elementdefp = (
+                <div style={{float: 'right'}}>
+                    <p>Действие по умолчанию<select id="selpol" style={{marginLeft: '3em', marginRight: '0.5em'}}>
+                        <option value="Разрешить">Разрешить</option>
+                        <option value="Запретить">Запретить</option>
+                    </select></p>
+                </div>
+            );
+
+            var elementButtonsIn = (
+                <div className="parent">
+                    <button className={nameAdd1} id="BtnModal8">+</button>
+                    <button className={nameRem1}> - <span id="tooltiptext1">Выберите строку!</span></button>
+                    <button className={nameEdit1} style={{display: "none"}}>&#x270E;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <button className={nameUp1}>  &#x2191;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <button className={nameDown1}>&#x2193;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <input type="text" id="myInput" className="child_search" placeholder="Поиск по номеру.."
+                           onkeyup="myFunctionFinder('myInput','tablePolitic_1_P1')"/>
+                </div>
+            );
+
+            var elementButtonsOut = (
+                <div className="parent">
+                    <button className={nameAdd2} id="BtnModal8">+</button>
+                    <button className={nameRem2}> - <span id="tooltiptext1">Выберите строку!</span></button>
+                    <button className={nameEdit2} style={{display: "none"}}>&#x270E;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <button className={nameUp2}>  &#x2191;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <button className={nameDown2}>&#x2193;<span className="tooltiptext">Выберите строку!</span>
+                    </button>
+                    <input type="text" id="myInput" className="child_search" placeholder="Поиск по номеру.."
+                           onkeyup="myFunctionFinder('myInput','tablePolitic_1_P1')"/>
+                </div>
+            );
+            // Add into input React onKeyUp={myFunctionFinder('myInput2','tablePolitic_2_P1')}
+            var elementButtonsInG = (
+                <div className="parent">
+                    <button className="buttons child addRow2" id="BtnModal9">+</button>
+                    <button className="buttons child remRow2">-</button>
+                    <button className="buttons child editRow2">&#x270E;</button>
+                    <input type="text" id="myInput2" className="child_search"
+                           placeholder="Поиск по номеру.." title="Type in a name"/>
+                </div>
+            );
+
+            var elementTableGroup = (
+                <div className="column right_column" style={{width: '47%'}}>
+                    <p style={{textAlign: 'center', fontSize: '1.1em'}}>Группы</p>
+                    <div className={nametabsG}>
+                        <input id={nameinput1G} type="radio" defaultChecked="true" name={nametabsG}/>
+                        <label htmlFor={nameinput1G}>ТфОП</label>
+
+                        <input id={nameinput2G} type="radio" name={nametabsG}/>
+                        <label htmlFor={nameinput2G}>УПАТС</label>
+
+                        <sectionP id={namesection1G}>
+                            <div id={idDivTableGIn}/>
+                            {elementButtonsInG}
+                        </sectionP>
+                        <sectionP id={namesection2G}>
+                            <div id={idDivTableGOut}/>
+                            {elementButtonsInG}
+                        </sectionP>
+                    </div>
+                    {elementTableUnder}
+                </div>
+
+            );
+
+            return (<div>
+                    <div className="column">
+                        <p style={{textAlign: 'center', fontSize: '1.1em'}}>Политики</p>
+                        <div class={nametabs}>
+                            <input id={nameinput1} type="radio" defaultChecked="true" name={nametabs}/>
+                            <label htmlFor={nameinput1}>Входящие</label>
+
+                            <input id={nameinput2} type="radio" name={nametabs}/>
+                            <label htmlFor={nameinput2}>Исходящие</label>
+
+                            <sectionP id={namesection1}>
+                                <div id={idDivTablePIn}/>
+                                <div>{elementdefp}</div>
+                                <div>{elementButtonsIn}</div>
+                            </sectionP>
+                            <sectionP id={namesection2}>
+                                <div id={idDivTablePOut}/>
+                                <div>{elementdefp}</div>
+                                <div>{elementButtonsOut}</div>
+                            </sectionP>
+                        </div>
+                    </div>
+                    {elementTableGroup}
+                    </div>
+            );
+        }
+    })
+
+    class RAutoComplete extends React.Component {
+
+        constructor(props) {
+            super(props)
+            this.state = {
+                value: this.props.name,
+            }
+        }
+
+        render() {
+            return (
+                <ReactAutocomplete
+                    items={ElementArray}
+                    shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) == 0}
+                    getItemValue={item => item.label}
+                    renderItem={(item, highlighted) =>
+                        <div
+                            key={item.id}
+                            style={{backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                        >
+                            {item.label}
+                        </div>
+                    }
+                    value={this.state.value}
+                    onChange={e => this.setState({value: e.target.value})}
+                    onSelect={value => this.setState({value})}
+                />
             )
-
-            var strPattern = "((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*";
-            /*
-            var elementModal = (
-                <div id="ModalW8" className="modal">
-                <div className="row" style={{width: '33%', margin:'auto', backgroundColor:'indianred'}}>
-
-                    <p id="pAddPolitice" className="font_sizing_m">Добавление новой политики</p>
-                    <hr/>
-
-                    <p className="fieldgroup2">Номера
-
-                        <input style={{width: '25%', marginLeft: '4em'}} id="number1" pattern={strPattern}/>
-
-                        <select name="footerLayout" id="selectG1" style={{width: '10%'}}></select>
-
-                        <input style={{width: '25%'}} id="number2" pattern=strPattern/>
-                        <select name="footerLayout" id="selectG2" style={{width: '10%'}}></select>
-                    </p>
-
-                    <div>
-                        <p className="fieldgroup2">Направление</p>
-                        <select id="selpol2">
-                            <option value="ТфОП > УПАТС" selected="selected">ТфОП > УПАТС</option>
-                            <option value="УПАТС > ТфОП">УПАТС > ТфОП</option>
-                        </select>\n'
-                        <form style="display: none" id="formpol">
-
-                            <div className="fieldgroup2">\n'
-                                <input type="radio" name="baz" id="radiop1" checked="checked"
-                                       value="ТфОП > УПАТС"/>ТфОП > УПАТС
-                            </div>
-                            <div className="fieldgroup2">\n'
-                                <input type="radio" name="baz" id="radiop2" value="УПАТС > ТфОП"/>УПАТС >
-                                ТфОП
-                            </div>
-                        </form>
-                    </div>
-
-                    <div style="clear: both">\n'
-                        <p className="fieldgroup2">Действие
-                            <select id="selpol" style="margin-left: 3em">
-                                <option value="Разрешить">Разрешить</option>
-                                <option value="Запретить">Запретить</option>
-                            </select>
-                        </p>
-                    </div>
-
-                    <div style="clear: both">
-                        <div>
-                            <button className="closeModals" value='ModalW8'
-                                    style="float: left; width: 30%;">Отмена
-                            </button>
-                            <button name="buttonAddW8" value='ModalW8' style="float: right; width: 30%;"
-                                    onClick="addRowTable1()">Добавить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>);
-*/
-            var elementButtons = (
-                    <div className="parent">
-                        <button className="buttons child addRow" id="BtnModal8"></button>
-
-                        <button className={classnameRem1}> - <span id="tooltiptext1">Выберите строку!</span></button>
-                        <button className={classnameEdit1}>&#x270E;<span className="tooltiptext">Выберите строку!</span>
-                        </button>
-                        <button className={classnameUp1}>  &#x2191;<span className="tooltiptext">Выберите строку!</span>
-                        </button>
-                        <button className={classnameDown1}>&#x2193;<span className="tooltiptext">Выберите строку!</span>
-                        </button>
-
-                    </div>
-            );
-
-            return (
-                <div className="column">
-                    <p style={{textAlign: 'center', fontSize: '1.1em'}}>Политики</p>
-                    <div class={nametabs}>
-                        <input id={nameinput1} type="radio" defaultChecked="true" name={nametabs}/>
-                        <label htmlFor={nameinput1}>Входящие</label>
-
-                        <input id={nameinput2} type="radio" name={nametabs}/>
-                        <label htmlFor={nameinput2}>Исходящие</label>
-
-                        <sectionP id={namesection1}>
-                            <div id={idDivTablePIn}/>
-                            <div>
-                                {element}
-                            </div>
-                        </sectionP>
-                        <sectionP id={namesection2}>
-                            <div id={idDivTablePOut}/>
-                            {element}
-                        </sectionP>
-                    </div>
-                </div>
-
-            );
         }
-    })
+    }
 
+    class PanelChannels extends React.Component {
 
-    const TabsReact = React.createClass({
-    render: function () {
-        return (
-            <div>
-                <ul className='tabsA'>
-                    <li><a href='#tab1A'>Tab 1</a></li>
-                    <li><a href='#tab2A'>Tab 2</a></li>
-                    <li><a href='#tab3A'>Tab 3</a></li>
-                </ul>
-
-                <div id='tab1A'>
-                    <p>Hi, this is the first tab.</p>
-                </div>
-                <div id='tab2A'>
-                    <p>This is the 2nd tab.</p>
-                </div>
-                <div id='tab3A'>
-                    <p>And this is the 3rd tab.</p>
-                </div>
-            </div>
-         );
-
-    }})
-
-    $('ul.tabsA').each(function(){
-        // For each set of tabs, we want to keep track of
-        // which tab is active and its associated content
-        var $active, $content, $links = $(this).find('a');
-
-        // If the location.hash matches one of the links, use that as the active tab.
-        // If no match is found, use the first link as the initial active tab.
-        $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
-        $active.addClass('active');
-
-        $content = $($active[0].hash);
-
-        // Hide the remaining content
-        $links.not($active).each(function () {
-            $(this.hash).hide();
-        });
-
-        // Bind the click event handler
-        $(this).on('click', 'a', function(e){
-            // Make the old tab inactive.
-            $active.removeClass('active');
-            $content.hide();
-
-            // Update the variables with the new link and content
-            $active = $(this);
-            $content = $(this.hash);
-
-            // Make the tab active.
-            $active.addClass('active');
-            $content.show();
-
-            // Prevent the anchor's default click action
-            e.preventDefault();
-        });
-    });
-
-    const TabsR = React.createClass({
-        render: function () {
-
-            const idLayout = name.slice(-1);
-            const nameTable2 = 'tablePolitic_2_P' + idLayout;
-            const nameRem1 = 'remRow1P' + idLayout;
-            const nameRem2 = 'remRow2P' + idLayout;
-            const nameEdit1 = 'editRow1';
-            const nameEdit2 = 'editRow2';
-            const nameup1 = 'up1';
-            const nameup2 = 'up2';
-            const namedown1 = 'down1';
-            const namedown2 = 'down2';
-            const classbuttons = "buttons child tooltip ";
-            const classnameRem1 =  classbuttons + nameRem1;
-            const classnameEdit1 = classbuttons + nameEdit1;
-            const classnameUp1 =   classbuttons + nameup1;
-            const classnameDown1 = classbuttons + namedown1;
-            const idDivTableP = "divtableP" + idLayout;
-            const idDivTableG = "divtableG" + idLayout;
-            return (
-                <div class="column">
-                    <div id='idDivTableP  '></div>
-                    <div class="parent">
-                        <button class="buttons child addRow" id="BtnModal8"></button>
-                        <div id="ModalW8" class="modal">
-                            <div class="row" style="width: 33% ; margin: auto; background-color: indianred ">
-
-                                <p id="pAddPolitice" class="font_sizing_m">Добавление новой политики</p>
-                                <hr/>
-
-                                <p className="fieldgroup2">Номера
-                                    <input style="width: 25%; margin-left: 4em" id="number1"
-                                           pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>
-                                    <select name="footerLayout" id="selectG1" style="width: 10%"></select>>
-
-                                    <input style="width: 25%" id="number2"
-                                           pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>
-                                    <select name="footerLayout" id="selectG2" style="width: 10%"></select>
-                                </p>
-
-                                <div>
-                                    <p class="fieldgroup2">Направление</p>
-                                    <select id="selpol2">
-                                        <option value="ТфОП > УПАТС" selected="selected">ТфОП > УПАТС</option>
-                                        <option value="УПАТС > ТфОП">УПАТС > ТфОП</option>
-                                    </select>\n'
-                                    <form style="display: none" id="formpol">
-
-                                        <div class="fieldgroup2">\n'
-                                            <input type="radio" name="baz" id="radiop1" checked="checked" value="ТфОП > УПАТС"/>ТфОП > УПАТС
-                                        </div>
-                                        <div class="fieldgroup2">\n'
-                                            <input type="radio" name="baz" id="radiop2" value="УПАТС > ТфОП"/>УПАТС > ТфОП
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div style="clear: both">\n'
-                                    <p class="fieldgroup2">Действие
-                                        <select id="selpol" style="margin-left: 3em">
-                                            <option value="Разрешить">Разрешить</option>
-                                            <option value="Запретить">Запретить</option>
-                                        </select>
-                                    </p>
-                                </div>
-
-                                <div style="clear: both">
-                                    <div>
-                                        <button class="closeModals" value='ModalW8' style="float: left; width: 30%;">Отмена</button>
-                                        <button name="buttonAddW8" value='ModalW8' style="float: right; width: 30%;" onclick="addRowTable1()">Добавить</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class={classnameRem1}>    -    <span   id="tooltiptext1">Выберите строку!</span></button>
-                        <button class={classnameEdit1}>&#x270E;<span class="tooltiptext">Выберите строку!</span></button>
-                        <button class={classnameUp1}>  &#x2191;<span class="tooltiptext">Выберите строку!</span></button>
-                        <button class={classnameDown1}>&#x2193;<span class="tooltiptext">Выберите строку!</span></button>
-                        <input type="text" id="myInput" class="child_search"
-                               onkeyup="myFunctionFinder(\'myInput\','tablepol1')" placeholder="Поиск по номеру.."/>
-                    </div>
-                </div>
-            );
+        constructor(props) {
+            super(props)
         }
-    })
+
+        render() {
+            var elementsDiv = [];
+
+            for (var j = 0; j < 31; j++) {
+
+                var hiding = (j == 0) ? " hiding" : "";
+                var text = j;
+                if (j < 10) text = '\xa0' + j;
+                if (j == 0) text = "Порт";
+
+                var elep = (<p className="pcontext">{text}</p>);
+
+                var divCircleF = (<div className="circleBase typeC"></div>);
+
+                var divLeft = (<i className={"left" + hiding}></i>);
+
+                var divLine = (<div className={"line" + hiding}></div>);
+
+                var divRight = (<i className={"right" + hiding}></i>);
+
+                var divCircle_S = (<div className="circleBase typeC"></div>);
+
+                var eleDiv = (
+                    <div className="centralAndClear" id={"div_content_" + j}>
+                        {elep}
+                        {divCircleF}
+                        {divLeft}
+                        {divLine}
+                        {divRight}
+                        {divCircle_S}
+                        {elep}
+                    </div>);
+                elementsDiv.push(eleDiv);
+            }
+            elementsDiv.push((<hr/>));
+
+            var arrColor = ["", "greenCircle", "redCircle", "grayCircle"];
+            var arrState = ["Канал свободен", "Канал занят", "Нарушение", "Канал не активен"];
+
+            for (var j = 0; j < 4; j++) {
+
+                var circleClass = "circleBase typeC dLegend " + arrColor[j];
+
+                let divLoop = (
+                    <div className="centralAndClear" style={{float: 'left', left: '20%'}}>
+                        <div className={circleClass}/>
+                        <p className="pcontext">{arrState[j]}</p>
+                    </div>);
+                elementsDiv.push(divLoop);
+            }
+            return <div> {elementsDiv} </div>;
+        }
+    }
 
 </script>
-
 </body>
 </html>

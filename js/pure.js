@@ -1,5 +1,7 @@
-
+var GLOBALTABLE;
 function addRowTable1() {
+
+    var tableName = GLOBALTABLE;
 
     if($("#number1").is(":invalid")){
         if($("#selectG1 option:selected").val() != $('input#number1').val()) {
@@ -17,29 +19,28 @@ function addRowTable1() {
 
     $("#ModalW8").css("display","none");
 
-    var col1_f = $('input#number1').val();
-    var col1_s = $('input#number2').val();
+    var col1 = $('input#number1').val();
+    var col2 = $('input#number2').val();
 
     //var col2 = $('input[name=baz]:checked').val();
-    var col2 = $('select#selpol2 option:checked').val();
     var col3 = $("select#selpol option:checked" ).val();
 
     if($('button[name = "buttonAddW8"]').text().indexOf("Изменить") != -1){
-        var tdata = $("#tablepol1I tr.selected").children('td');
-        tdata[0].innerText = col1_f + '>' + col1_s;
+        var tdata = $(tableName + " tr.selected").children('td');
+        tdata[0].innerText = col1;
         tdata[1].innerText = col2;
         tdata[2].innerText = col3;
     }
     else {
-        var strRow = '<tr><td>' + col1_f + '>' + col1_s +'</td><td>' + col2 + '</td><td>' + col3 + '</td></tr>';
-        var indexRow = $("#tablepol1I tr.selected").index();
+        var strRow = '<tr><td>' + col1 +'</td><td>' + col2 + '</td><td>' + col3 + '</td></tr>';
+        var indexRow = $(tableName + " tr.selected").index();
 
         if(indexRow == 0)
-            $('#tablepol1I > tbody > tr:first').before(strRow);
+            $(tableName + ' > tbody > tr:first').before(strRow);
         else if(indexRow > 0)
-            $('#tablepol1I > tbody > tr:nth-child(' + indexRow + ')').after(strRow);
+            $(tableName + ' > tbody > tr:nth-child(' + indexRow + ')').after(strRow);
         else
-            $('#tablepol1I > tbody').append(strRow);
+            $(tableName + ' > tbody').append(strRow);
         eventChangeRows();
         }
 }
@@ -86,21 +87,6 @@ function addRowTable2() {
 
 }
 
-function changeCSS() {
-
-    var tmp = $('body').css("font-size"); // Default 16px
-
-    var th1 = $(".column").css("height") == "352px" ? "35em" : "22em";
-
-    var tz = $(".column").css("height");
-
-    var tls = (th1 == "22em") ? "15em" : "28em";
-
-    $(".column, .colbutton").css("height", th1);
-
-    $("#tablepol1I  > tbody, #tablegr1 > tbody").css("height", tls);
-}
-
 function changeHelp(name) {
     var text = name.innerText;
 
@@ -115,18 +101,25 @@ function baseDivHelp() {
 }
 
 function checkE1(ele) {
+
     var id = ele.id;
 
     var synL1 = "radioe1_1";
+
     var synL2 = "radioe1_2";
+
     var synL3 = "radioe1_3";
 
     var synR1 = "radioe1_upats_1";
+
     var synR2 = "radioe1_upats_2";
+
     var synR3 = "radioe1_upats_3";
 
     var temp = id == synL1 ? synR2 : (id == synL2 || id == synL3) ? synR1 : id == synR1 ? synL2 : synL1;
+
     document.getElementById(temp).checked = true;
+
 }
 
 function checkNet(ele) {
@@ -134,23 +127,32 @@ function checkNet(ele) {
     var id = ele.id;
 
     var netL1 = "radioe1_4";
+
     var netL2 = "radioe1_5"
 
     var netR1 = "radioe1_upats_4";
+
     var netR2 = "radioe1_upats_5";
 
     var temp = id == netL1 ? netR2 : id == netL2 ? netR1 : id == netR1 ? netL2 : netL1;
 
     document.getElementById(temp).checked = true;
+
 }
+
+
+var ElementArray = [];
+
 
 function createListGroup() {
 
     var items = [], options=[];
 
-    $('#tablegr1 tbody tr td:nth-child(1)').each( function(){
+     $('#tablegr1 tbody tr td:nth-child(1)').each( function(){
         //add item to array
-        items.push( $(this).text() );
+        var text =  $(this).text();
+        items.push( text );
+        ElementArray.push({ id: text, label: text});
     });
 
     //restrict array to unique items
@@ -186,221 +188,11 @@ function createListForGroup() {
     $('#selectG3').empty().append( options.join() );
 }
 
-function createPanelChannels(){
-    var divX = document.getElementById("contentleft");
-
-    for(var j=0; j < 31 ; j++) {
-
-        var divChild = document.createElement("div");
-        divChild.className = "centralAndClear";
-        divChild.id = "div_content_" + j;
-
-        var divPF = document.createElement("p");
-        divPF.className = "pcontext";
-
-        var text=j;
-        if(j<10) text = '\xa0' + j;
-        if(j==0) text = "Порт";
-
-        var t = document.createTextNode(text);
-        divPF.appendChild(t);
-
-        var divCircle_F = document.createElement("div");
-        divCircle_F.className = "circleBase typeC";
-
-        var divLeft = document.createElement("i");
-        divLeft.className = (j!=0) ? "left" : "left hiding";
-
-        var divLine = document.createElement("div");
-        divLine.className = (j!=0) ? "line" : "line hiding";
-
-        var divRight = document.createElement("i");
-        divRight.className = (j!=0) ? "right" : "right hiding";
-
-        var divCircle_S = document.createElement("div");
-        divCircle_S.className = "circleBase typeC";
-
-        var divPS = document.createElement("p");
-        divPS.className = "pcontext";
-
-        var t = document.createTextNode(text);
-        divPS.appendChild(t);
-
-        divChild.appendChild(divPF);
-
-        divChild.appendChild(divCircle_F);
-        divChild.appendChild(divLeft);
-        divChild.appendChild(divLine);
-        divChild.appendChild(divRight);
-        divChild.appendChild(divCircle_S);
-        divChild.appendChild(divPS);
-        divX.appendChild(divChild);
-    }
-
-    var divHR = document.createElement("hr");
-    divX.appendChild(divHR);
-
-    for(var j = 0; j < 4; j++) {
-
-        var divChild = document.createElement("div");
-
-        divChild.className = "centralAndClear";
-
-        divChild.style.cssFloat = "left";
-        divChild.style.left = "20%";
-
-
-        var divPF = document.createElement("p");
-        divPF.className = "pcontext";
-        var text = (j==0) ? "Канал свободен" : (j==1) ? "Канал занят" : (j==2) ? "Нарушение" : "Канал не активен";
-
-
-        var t = document.createTextNode(text);
-        divPF.appendChild(t);
-
-        var circleClass = "circleBase typeC dLegend";
-        if(j == 1) circleClass += " greenCircle";
-        else if(j == 2) circleClass += " redCircle";
-        else if(j == 3) circleClass += " grayCircle";
-
-        var divCircle_F = document.createElement("div");
-        divCircle_F.className = circleClass;
-
-        var divPS = document.createElement("p");
-        divPS.className = "pcontext";
-        var t = document.createTextNode(text);
-
-        divPS.appendChild(t);
-        divChild.appendChild(divCircle_F);
-        divChild.appendChild(divPF);
-        divX.appendChild(divChild);
-    }
-}
-
-function createTableP(id) {
-    var last = id.slice(-1);
-    var nameTable1 = 'tablePolitic_1_P' + last;
-    var nameTable2 = 'tablePolitic_2_P' + last;
-    var nameRem1 = 'remRow1P' + last;
-    var nameRem2 = 'remRow2P' + last;
-    var nameEdit1 = 'editRow1';
-    var nameEdit2 = 'editRow2';
-    var nameup1 = 'up1';
-    var nameup2 = 'up2';
-    var namedown1 = 'down1';
-    var namedown2 = 'down2';
-    var classnameRem1 = "\"buttons child tooltip " + nameRem1 + "\"";
-    var classnameEdit1 = "\"buttons child tooltip " + nameEdit1 + "\"";
-    var classnameUp1 = "\"buttons child tooltip " + nameup1 + "\"";
-    var classnameDown1 = "\"buttons child tooltip " + namedown1 + "\"";
-
-    var idDivTablePIn  = "divtableP" + last + "I";
-    var idDivTablePOut = "divtableP" + last + "O";
-
-    var idDivTableG = "divtableG" + last;
-
-    var nametabs = "tabsnew" + last;
-    var nameinput1 = "tabnew1" + last;
-    var nameinput2 = "tabnew2" + last;
-    var namesection1 = "contentN1" + last;
-    var namesection2 = "contentN2" + last;
-
-    var result = '<div class="column"><p style="text-align: center; font-size: 1.1em">Политики</p>\n' +
-        '     <div class=' + nametabs + '>\n' +
-        '    <input id=' + nameinput1 +  ' type="radio" name=' + nametabs +' checked>\n' +
-        '    <label for='+ nameinput1 + '>Входящие</label>\n' +
-        '\n' +
-        '    <input id=' + nameinput2 +' type="radio" name='+ nametabs + ' >\n' +
-        '    <label for=' + nameinput2 +'>Исходящие</label>\n' +
-        '\n' +
-        '    <sectionP id=' + namesection1  + '><div id=' + idDivTablePIn + '></div></sectionP>\n' +
-        '\n' +
-        '    <sectionP id= ' + namesection2 + '><div id=' + idDivTablePOut + '></div></sectionP>\n' +
-        '</div>' +
-        '<p style="float: right; height: 1.6em; ">\n' +
-        '    Политика по умолчанию\n <strong>Заперетить</strong>' +
-        '<label class="switch" style="width: 3.2em; ">\n' +
-        '    <input type="checkbox" checked>\n' +
-        '    <span class="sliderDefPol round"></span>\n' +
-        '</label>\n' +
-        '     <strong>Разрешить</strong></p>                                                      <div class="parent">\n' +
-        '                                                          <button class="buttons child addRow" id="BtnModal8" >+</button>\n' +
-        '\n' +
-        '                                                          <div id="ModalW8" class="modal">\n' +
-        '\n' +
-        '                                                              <div class="row" style="width: 33% ; margin: auto; background-color: indianred " >\n' +
-        '\n' +
-        '                                                                      <p id="pAddPolitice" class="font_sizing_m">Добавление новой политики</p><hr>\n' +
-        '\n' +
-        '                                                                      <p class="fieldgroup2">Номера\n' +
-        '                                                                          <input style="width: 25%; margin-left: 4em" id="number1" pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>\n' +
-        '                                                                          <select name="footerLayout" id="selectG1" style="width: 10%"></select>>\n' +
-        '\n' +
-        '                                                                          <input  style="width: 25%" id="number2" pattern="((\x5b\\d-\\d\x5d)|(\x2A)|(\x2B)|(\\d)|(\x3F))*"/>\n' +
-        '                                                                          <select name="footerLayout" id="selectG2" style="width: 10%"></select>\n' +
-        '                                                                      </p>\n' +
-        '\n' +
-        '                                                                      <div>\n' +
-        '                                                                          <p class="fieldgroup2">Направление</p>\n' +
-        '                                                                              <select id="selpol2">\n' +
-        '                                                                                  <option value="ТфОП > УПАТС" selected="selected">ТфОП > УПАТС</option>\n' +
-        '                                                                                  <option value="УПАТС > ТфОП">УПАТС > ТфОП</option>\n' +
-        '                                                                              </select>\n' +
-        '                                                                          <form style="display: none" id="formpol">\n' +
-        '\n' +
-        '                                                                              <div class="fieldgroup2">\n' +
-        '                                                                                  <input type="radio" name="baz" id="radiop1" checked="checked" value="ТфОП > УПАТС">ТфОП > УПАТС\n' +
-        '                                                                              </div>\n' +
-        '                                                                              <div class="fieldgroup2">\n' +
-        '                                                                                  <input type="radio" name="baz" id="radiop2" value="УПАТС > ТфОП">УПАТС > ТфОП\n' +
-        '                                                                              </div>\n' +
-        '                                                                          </form>\n' +
-        '                                                                      </div>\n' +
-        '                                                                      <div style="clear: both">\n' +
-        '                                                                          <p class="fieldgroup2">Действие\n' +
-        '                                                                              <select id="selpol"  style="margin-left: 3em">\n' +
-        '                                                                                  <option value="Разрешить">Разрешить</option>\n' +
-        '                                                                                  <option value="Запретить">Запретить</option>\n' +
-        '                                                                              </select>\n' +
-        '                                                                          </p>\n' +
-        '                                                                      </div>\n' +
-        '\n' +
-        '                                                                      <div style="clear: both">\n' +
-        '                                                                          <div><button class="closeModals" value=\'ModalW8\' style="float: left; width: 30%;">Отмена</button>\n' +
-        '                                                                              <button name = "buttonAddW8" value=\'ModalW8\' style="float: right; width: 30%;"\n' +
-        '                                                                                      onclick="addRowTable1()">Добавить</button>\n' +
-        '                                                                          </div>\n' +
-        '                                                                      </div>\n' +
-        '                                                              </div>\n' +
-        '                                                          </div>\n' +
-        '                                                          <button class='+ classnameRem1  + '>    -   <span id="tooltiptext1">   Выберите строку!</span></button>\n' +
-        '                                                          <button class='+ classnameEdit1 + '>&#x270E;<span class="tooltiptext"> Выберите строку!</span></button>\n' +
-        '                                                          <button class='+ classnameUp1 + '>  &#x2191;<span class="tooltiptext"> Выберите строку!</span></button>\n' +
-        '                                                          <button class='+ classnameDown1 + '>&#x2193;<span class="tooltiptext"> Выберите строку!</span></button>\n' +
-        '                                                          <input type="text" id="myInput" class="child_search" onkeyup="myFunctionFinder(\'myInput\',\'tablepol1I\')" placeholder="Поиск по номеру..">\n' +
-        '                                                      </div>\n' +
-        '                                                  </div>\n' +
-        '\n' +
-        '                                        <!--          <button class="colbutton" onclick="changeCSS()"><strong>&#8597;</strong></button> -->\n' +
-        '\n' +
-        '                                                  <div class="column right_column" style="width: 47%"><p style="text-align: center; font-size: 1.1em">Группы</p>\n' +
-        '                                                      <div id=' + idDivTableG + '  style="margin-top: 2.6em"></div>\n' +
-        '                                                      <div class="parent">\n' +
-        '                                                          <button class="buttons child addRow2" id="BtnModal9">+</button>\n' +
-        '                                                          <button class="buttons child remRow2">-</button>\n' +
-        '                                                          <button class="buttons child editRow2">&#x270E;</button>\n' +
-        '                                                          <input type="text" id="myInput2" class="child_search" onkeyup="myFunctionFinder(\'myInput2\',\'tablegr1\')" placeholder="Search for number.." title="Type in a name">\n' +
-        '                                                      </div>\n' +
-        '                                                  </div>';
-    document.getElementById(id).innerHTML = result;
-    return true;
-}
-
 function date_time(id) {
     date = new Date;
     year = date.getFullYear();
     month = date.getMonth();
-    months = new Array('Янв', 'Фев', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек');
+    months = new Array('Янв', 'Фев', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек');
     d = date.getDate();
     day = date.getDay();
     days = new Array('Воскресение', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота');
@@ -419,7 +211,7 @@ function date_time(id) {
     {
         s = "0"+s;
     }
-    result =  '<span style="font-size: 1.2em">' + h+':'+m + '</span>'  + '      ' +  '<span style="font-size: 0.8em">'  + months[month] + ' ' + d + '</span>';
+    result =  '<span style="font-size: 1.2em">' + h+':'+m + '</span>'  + '      ' +  '<span style="font-size: 0.8em">'  + d  + ' '+ months[month]  + ' ' + year + '</span>';
     document.getElementById(id).innerHTML = result;
     setTimeout('date_time("'+id+'");','1000');
     return true;
@@ -498,10 +290,10 @@ function sortTable(n, name) {
     }
 }
 
-function syncDate(ele) {
-    document.getElementById("autosyncf").disabled = !ele.checked;
-    var state = ele.checked == false ? "auto" : "none";
-    $('#datetime').prop('disabled', ele.checked);
+function syncDate() {
+    var state = !document.getElementById("syncCheckBox").checked;
+    document.getElementById("autosyncf").disabled = state;
+    $('#datetime').prop('disabled', state);
     /*
     $('#ip1').css("pointer-events", state);
     $('#buttondate1').css("pointer-events", state);
@@ -509,35 +301,52 @@ function syncDate(ele) {
 }
 
 function eventChangeRows(){
-    $(".tableP tbody tr").click(function(){
+    $(".tableP tbody tr, .tableG tbody tr").click(function(){
         $(this).addClass('selected').siblings().removeClass('selected');
         var value=$(this).find('td:first').html();
         var table = (this).closest('table');
         if(table.id == "tablepol1I"){
-            eventTooltipHide_1();
+            eventTooltipHide_1("In1");
+        }
+        if(table.id == "tablepol2I"){
+            eventTooltipHide_1("In2");
+        }
+        if(table.id == "tablepol3I"){
+            eventTooltipHide_1("In3");
+        }
+        if(table.id == "tablepol4I"){
+            eventTooltipHide_1("In4");
+        }
+        if(table.id == "tablepol1O"){
+            eventTooltipHide_1("Out1");
+        }
+        if(table.id == "tablepol2O"){
+            eventTooltipHide_1("Out2");
+        }
+        if(table.id == "tablepol3O"){
+            eventTooltipHide_1("Out3");
+        }
+        if(table.id == "tablepol4O"){
+            eventTooltipHide_1("Out4");
         }
     });
 }
 
-function eventTooltipHide_1(){
-    $(".remRow1P1").children().hide();
-    $('.editRow1').children().hide();
-    $('.up1').children().hide();
-    $('.down1').children().hide();
+function eventTooltipHide_1(name){
+    $(".remRow" + name).children().hide();
+    $(".editRow" + name).children().hide();
+    $(".up" + name).children().hide();
+    $(".down" + name).children().hide();
 }
 
-function eventTooltipShow_1(){
-    $(".remRow1P1").children().show();
-    $('.editRow1').children().show();
-    $('.up1').children().show();
-    $('.down1').children().show();
+function eventTooltipShow_1(name){
+    $(".remRow" + name).children().show();
+    $(".editRow" + name).children().show();
+    $(".up" + name).children().show();
+    $(".down" + name).children().show();
 }
 
-$(document).ready(function () {
-
-    createTableP("#rowP1");
-    createTableP("#rowP2");
-    createTableP("#rowP3");
+function funcDocumentReady() {
 
     createListGroup();
 
@@ -553,38 +362,182 @@ $(document).ready(function () {
 
   /*  $('#tablepol1I tr:last').after('<tr>...</tr><tr>...</tr><tr>...</tr>');*/
 
-    $(".remRow1P1").click(function() {
+    $(".remRowIn1").click(function() {
 
         var indexRow = $("#tablepol1I tr.selected").index();
 
         if(indexRow != -1) {
             $("#tablepol1I tr.selected").remove();
         }
-        eventTooltipShow_1();
+        eventTooltipShow_1("In1");
+    });
+    $(".remRowIn2").click(function() {
+
+        var indexRow = $("#tablepol2I tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol2I tr.selected").remove();
+        }
+        eventTooltipShow_1("In2");
+    });
+    $(".remRowIn3").click(function() {
+
+        var indexRow = $("#tablepol3I tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol3I tr.selected").remove();
+        }
+        eventTooltipShow_1("In3");
+    });
+    $(".remRowIn4").click(function() {
+
+        var indexRow = $("#tablepol4I tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol4I tr.selected").remove();
+        }
+        eventTooltipShow_1("In4");
+    });
+
+    $(".remRowOut1").click(function() {
+
+        var indexRow = $("#tablepol1O tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol1O tr.selected").remove();
+        }
+        eventTooltipShow_1("Out1");
+    });
+    $(".remRowOut2").click(function() {
+
+        var indexRow = $("#tablepol2O tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol2O tr.selected").remove();
+        }
+        eventTooltipShow_1("Out2");
+    });
+    $(".remRowOut3").click(function() {
+
+        var indexRow = $("#tablepol3O tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol3O tr.selected").remove();
+        }
+        eventTooltipShow_1("Out3");
+    });
+    $(".remRowOut4").click(function() {
+
+        var indexRow = $("#tablepol4O tr.selected").index();
+
+        if(indexRow != -1) {
+            $("#tablepol4O tr.selected").remove();
+        }
+        eventTooltipShow_1("Out4");
     });
 
     $(".remRow2").click(function() {
         $("#tablegr1 tr.selected").remove();
     });
 
-    $(".up1,.down1").click(function () {
+    $(".upIn1,.downIn1").click(function () {
 
         var table = (this).closest('table');
 
         var row = $("#tablepol1I tr.selected");
 
-        if($(this).is('.up1')){
+        if($(this).is('.upIn1')){
             row.insertBefore(row.prev());
         }
-
         else{
             row.insertAfter(row.next());
         }
-
     });
 
-    $(".addRow, .editRow1").click(function () {
-        if($(this).is('.addRow')) {
+    $(".upIn2,.downIn2").click(function () {
+
+        var row = $("#tablepol2I tr.selected");
+
+        if($(this).is('.upIn2')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+
+    $(".upIn3,.downIn3").click(function () {
+
+        var row = $("#tablepol3I tr.selected");
+
+        if($(this).is('.upIn3')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+
+    $(".upIn4,.downIn4").click(function () {
+
+        var row = $("#tablepol4I tr.selected");
+
+        if($(this).is('.upIn4')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+
+    $(".upOut1,.downOut1").click(function () {
+
+        var row = $("#tablepol1O tr.selected");
+
+        if($(this).is('.upOut1')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+    $(".upOut2,.downOut2").click(function () {
+
+        var row = $("#tablepol2O tr.selected");
+
+        if($(this).is('.upOut2')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+    $(".upOut3,.downOut3").click(function () {
+
+        var row = $("#tablepol3O tr.selected");
+
+        if($(this).is('.upOut3')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+    $(".upOut4,.downOut4").click(function () {
+
+        var row = $("#tablepol4O tr.selected");
+
+        if($(this).is('.upOut4')){
+            row.insertBefore(row.prev());
+        }
+        else{
+            row.insertAfter(row.next());
+        }
+    });
+
+    $(".addRowIn1, .editRowIn1, .addRowIn2, .editRowIn2 ,.addRowIn3, .editRowIn3, .addRowIn4, .editRowIn4, " +
+        ".addRowOut1, .editRowOut1, .addRowOut2, .editRowOut2 ,.addRowOut3, .editRowOut3, .addRowOut4, .editRowOut4").click(function () {
+        if($(this).is('.addRowIn1, .addRowIn2, .addRowIn3, .addRowIn4,.addRowOut1, .addRowOut3, .addRowOut3, .addRowOut4')) {
             $('button[name = "buttonAddW8"]').text("Добавить");
             $('#pAddPolitice').text("Добавление новой политики");
         }
@@ -592,6 +545,14 @@ $(document).ready(function () {
             $('button[name = "buttonAddW8"]').text("Изменить");
             $('#pAddPolitice').text("Изменение политики");
         }
+        if($(this).is('.addRowIn1, .editRowIn1')) GLOBALTABLE = "#tablepol1I";
+        if($(this).is('.addRowIn2, .editRowIn2')) GLOBALTABLE = "#tablepol2I";
+        if($(this).is('.addRowIn3, .editRowIn3')) GLOBALTABLE = "#tablepol3I";
+        if($(this).is('.addRowIn4, .editRowIn4')) GLOBALTABLE = "#tablepol4I";
+        if($(this).is('.addRowOut1, .editRowOut1')) GLOBALTABLE = "#tablepol1O";
+        if($(this).is('.addRowOut2, .editRowOut2')) GLOBALTABLE = "#tablepol2O";
+        if($(this).is('.addRowOut3, .editRowOut3')) GLOBALTABLE = "#tablepol3O";
+        if($(this).is('.addRowOut4, .editRowOut4')) GLOBALTABLE = "#tablepol4O";
     })
 
     $(".addRow2, .editRow2").click(function () {
@@ -605,30 +566,49 @@ $(document).ready(function () {
         }
     })
 
-    $(".editRow1").click(function () {
+    jQuery.expr[':'].regex = function(elem, index, match) {
+        var matchParams = match[3].split(','),
+            validLabels = /^(data|css):/,
+            attr = {
+                method: matchParams[0].match(validLabels) ?
+                    matchParams[0].split(':')[0] : 'attr',
+                property: matchParams.shift().replace(validLabels,'')
+            },
+            regexFlags = 'ig',
+            regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+        return regex.test(jQuery(elem)[attr.method](attr.property));
+    }
 
-        var tdata = $("#tablepol1I tr.selected").children('td');
 
-        var str = tdata[0].innerText;
+    $(".addRowIn1, .addRowIn2 ,.addRowIn3 ,.addRowIn4 ,.addRowOut1 ,.addRowOut2 ,.addRowOut3 ,.addRowOut4").click(function () {
+        $("#ModalW8").css("display","block");
+    });
 
-        var indexs = tdata[0].innerText.indexOf('>');
 
-        var str1 = str.substring(0 ,indexs);
+    $(".editRowIn1, .editRowIn2 ,.editRowIn3 ,.editRowIn4 ,.editRowOut1 ,.editRowOut2 ,.editRowOut3 ,.editRowOut4").click(function () {
 
-        var str2 = str.substring(indexs + 1);
+        var nameTable;
 
-        var strcheck = tdata[1].innerText;
+        if($(this).is('.editRowIn1')) nameTable = "#tablepol1I";
+        if($(this).is('.editRowIn2')) nameTable = "#tablepol2I";
+        if($(this).is('.editRowIn3')) nameTable = "#tablepol3I";
+        if($(this).is('.editRowIn4')) nameTable = "#tablepol4I";
+        if($(this).is('.editRowOut1')) nameTable = "#tablepol1O";
+        if($(this).is('.editRowOut2')) nameTable = "#tablepol2O";
+        if($(this).is('.editRowOut3')) nameTable = "#tablepol3O";
+        if($(this).is('.editRowOut4')) nameTable = "#tablepol4O";
 
-        var selpol2 = tdata[1].innerText[0] == "У" ? "УПАТС > ТфОП" : "ТфОП > УПАТС";
+        var tdata = $(nameTable + " tr.selected").children('td');
 
-        document.getElementById((strcheck[0] == 'У') ? "radiop2" : "radiop1").checked = true;
+        var str1 = tdata[0].innerText;
+
+        var str2 = tdata[1].innerText;
 
         //$('input[name=baz]').filter(function(){return this.value === temp; }).attr('checked', true);  WHY NOT WORK!? :(
 
         $('input#number1').val(str1);
         $('input#number2').val(str2);
         $("#selpol").val(tdata[2].innerText);
-        $("#selpol2").val(selpol2);
 
         $("#ModalW8").css("display","block");
     })
@@ -670,17 +650,22 @@ $(document).ready(function () {
 
     eventChangeRows();
 
+    var dateControl = document.querySelector('input[type="date"]');
+    dateControl.defaultValue = '2017-06-01';
+
     {
         var arr = [];
         var am = "ModalW";
         var btn = "BtnModal";
-        var countModals = 9;
+        var countModals = 10;
 
         for (var i = 1; i <= countModals; i++) {
-            arr.push({
-                key: am + i,
-                mbutton: btn + i
-            });
+            if(i != 8) {
+                arr.push({
+                    key: am + i,
+                    mbutton: btn + i
+                });
+            }
         }
 
         arr.forEach(function (value) {
@@ -712,20 +697,25 @@ $(document).ready(function () {
             }
         }
 
-        var sliderA = document.getElementById("sliderA");
-        var outputA = document.getElementById("lineA");
-        outputA.value = sliderA.value;
+       // var sliderA = document.getElementById("sliderA");
+        var inputRight = document.getElementById("lineA");
+        inputRight.value = sliderA.value;
+
+        var prevValue = inputRight.value;
 
         sliderA.oninput = function () {
-            this.value=this.value.replace(/[^0-9]/g,'');
-            // this.value=this.value.replace(/\d+(\.\d{1,2})?/g,'');
-            // if (this.value == '') this.value = 3;
-            // if (this.value < 1) this.value = 3;
-            // if (this.value > 10) this.value = Number(this.value.toString().slice(0,-1));
-            outputA.value = this.value;
+            inputRight.value = this.value;
         }
-        outputA.oninput = function () {
-            sliderA.value = this.value;
+
+        inputRight.oninput = function () {
+            /*var strP =  /^0[1-9] | 10/);
+
+            var strPattern = /^\d+(\.\d)?$/;//(\.\d{1})?';
+            if(this.value.match(strP)) {
+                prevValue = sliderA.value = this.value;
+            }
+            this.value = prevValue;*/
+           // $.isNumeric( inputRight.value);
         }
 
         var sliderB = document.getElementById("sliderB");
@@ -742,7 +732,15 @@ $(document).ready(function () {
             if (this.value > 10) this.value = Number(this.value.toString().slice(0,-1));
             sliderB.value = this.value;
         }
+        var countInputDTMF = document.getElementById("countDTMF");
+        countInputDTMF.oninput = function () {
+            this.value=this.value.replace(/[^0-9]/g,'');
+            if (this.value == '') this.value = 0;
+            if (this.value < 0) this.value = 0;
+            if (this.value > 255) this.value = Number(this.value.toString().slice(0,-1));
+        }
     }
+
 
 
     /* THIS 'Inputmask.extendAliases' is just to override the paths
@@ -781,7 +779,7 @@ $(document).ready(function () {
     });
     */
 
-});
+}
 
 /*
 Inputmask.extendAliases({
